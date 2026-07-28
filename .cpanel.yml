@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home1/wsbiadmy/public_html/website_b8322a24/
+    - /bin/cp -R index.html css js assets images gender-pay-analytics $DEPLOYPATH
