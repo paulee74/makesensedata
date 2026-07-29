@@ -105,49 +105,70 @@ document.addEventListener("DOMContentLoaded", () => {
       window.setTimeout(startDashboard, 3900);
     }
     /* =========================================================
-   CASE STUDY CAROUSEL
+   CASE STUDY BROWSER
    ========================================================= */
 
-document.querySelectorAll("[data-case-carousel]").forEach((carousel) => {
+document.querySelectorAll(".case-browser").forEach((browser) => {
 
-  const slides = Array.from(
-    carousel.querySelectorAll("[data-case-slide]")
+  const cards = Array.from(
+    browser.querySelectorAll("[data-case-card]")
+  );
+
+  const copyBlocks = Array.from(
+    browser.querySelectorAll("[data-case-copy]")
   );
 
   const dots = Array.from(
-    carousel.querySelectorAll("[data-case-dot]")
+    browser.querySelectorAll("[data-case-browser-dot]")
   );
 
-  const prevButton = carousel.querySelector("[data-case-prev]");
-  const nextButton = carousel.querySelector("[data-case-next]");
+  const prevButton =
+    browser.querySelector("[data-case-browser-prev]");
+
+  const nextButton =
+    browser.querySelector("[data-case-browser-next]");
 
   let currentIndex = 0;
 
 
-  function showSlide(index) {
+  function selectCase(index) {
 
-    if (!slides.length) return;
+    if (!cards.length) return;
 
     if (index < 0) {
-      index = slides.length - 1;
+      index = cards.length - 1;
     }
 
-    if (index >= slides.length) {
+    if (index >= cards.length) {
       index = 0;
     }
 
     currentIndex = index;
 
 
-    slides.forEach((slide, slideIndex) => {
+    cards.forEach((card, cardIndex) => {
 
-      const isActive = slideIndex === currentIndex;
+      const active =
+        cardIndex === currentIndex;
 
-      slide.classList.toggle("is-active", isActive);
+      card.classList.toggle(
+        "is-active",
+        active
+      );
 
-      slide.setAttribute(
-        "aria-hidden",
-        isActive ? "false" : "true"
+      card.setAttribute(
+        "aria-pressed",
+        active ? "true" : "false"
+      );
+
+    });
+
+
+    copyBlocks.forEach((copy, copyIndex) => {
+
+      copy.classList.toggle(
+        "is-active",
+        copyIndex === currentIndex
       );
 
     });
@@ -155,44 +176,54 @@ document.querySelectorAll("[data-case-carousel]").forEach((carousel) => {
 
     dots.forEach((dot, dotIndex) => {
 
-      const isActive = dotIndex === currentIndex;
-
-      dot.classList.toggle("is-active", isActive);
-
-      dot.setAttribute(
-        "aria-current",
-        isActive ? "true" : "false"
+      dot.classList.toggle(
+        "is-active",
+        dotIndex === currentIndex
       );
 
     });
 
+
+    /* On smaller screens keep active card visible */
+
+    if (window.innerWidth <= 820) {
+
+      cards[currentIndex]?.scrollIntoView({
+        behavior:"smooth",
+        block:"nearest",
+        inline:"center"
+      });
+
+    }
+
   }
 
 
-  /* Previous */
+  cards.forEach((card) => {
 
-  prevButton?.addEventListener("click", () => {
-    showSlide(currentIndex - 1);
+    card.addEventListener("click", () => {
+
+      const index =
+        Number(card.dataset.caseCard);
+
+      if (!Number.isNaN(index)) {
+        selectCase(index);
+      }
+
+    });
+
   });
 
-
-  /* Next */
-
-  nextButton?.addEventListener("click", () => {
-    showSlide(currentIndex + 1);
-  });
-
-
-  /* Dots */
 
   dots.forEach((dot) => {
 
     dot.addEventListener("click", () => {
 
-      const index = Number(dot.dataset.caseDot);
+      const index =
+        Number(dot.dataset.caseBrowserDot);
 
       if (!Number.isNaN(index)) {
-        showSlide(index);
+        selectCase(index);
       }
 
     });
@@ -200,71 +231,36 @@ document.querySelectorAll("[data-case-carousel]").forEach((carousel) => {
   });
 
 
-  /* Keyboard navigation */
+  prevButton?.addEventListener("click", () => {
+    selectCase(currentIndex - 1);
+  });
 
-  carousel.setAttribute("tabindex", "0");
 
-  carousel.addEventListener("keydown", (event) => {
+  nextButton?.addEventListener("click", () => {
+    selectCase(currentIndex + 1);
+  });
+
+
+  browser.addEventListener("keydown", (event) => {
 
     if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      showSlide(currentIndex - 1);
+      selectCase(currentIndex - 1);
     }
 
     if (event.key === "ArrowRight") {
-      event.preventDefault();
-      showSlide(currentIndex + 1);
+      selectCase(currentIndex + 1);
     }
 
   });
 
 
-  /* Swipe support */
-
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-
-  carousel.addEventListener(
-    "touchstart",
-    (event) => {
-
-      touchStartX =
-        event.changedTouches[0].screenX;
-
-    },
-    { passive:true }
+  browser.setAttribute(
+    "tabindex",
+    "0"
   );
 
 
-  carousel.addEventListener(
-    "touchend",
-    (event) => {
-
-      touchEndX =
-        event.changedTouches[0].screenX;
-
-      const distance =
-        touchEndX - touchStartX;
-
-      if (Math.abs(distance) < 50) {
-        return;
-      }
-
-      if (distance > 0) {
-        showSlide(currentIndex - 1);
-      } else {
-        showSlide(currentIndex + 1);
-      }
-
-    },
-    { passive:true }
-  );
-
-
-  /* Initialise */
-
-  showSlide(0);
+  selectCase(0);
 
 });
   }});
