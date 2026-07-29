@@ -902,8 +902,7 @@ body.hero-ready .hero-dashboard{
 }
 
 .area-path{
-  fill:url(#areaFill);
-
+  fill:url(#heroAreaFill);
   opacity:0;
 }
 
@@ -1453,6 +1452,492 @@ body.dashboard-active .hero-dashboard .area-path{
 
 body.dashboard-active .hero-dashboard .chart-dots circle{
   animation:fade .4s ease 1.58s forwards;
+}
+/* =========================================================
+   HERO DASHBOARD — POWER BI COLOUR SYSTEM
+   ========================================================= */
+
+:root{
+  --dashboard-green:#27b89a;
+  --dashboard-green-light:#65cdb8;
+
+  --dashboard-coral:#f47f5f;
+  --dashboard-coral-light:#f5a087;
+
+  --dashboard-blue:#5f8fd3;
+  --dashboard-blue-light:#88aee4;
+
+  --dashboard-amber:#e8a34a;
+  --dashboard-amber-light:#f1c178;
+}
+
+
+/* =========================================================
+   DASHBOARD SHELL
+   ========================================================= */
+
+.dashboard-shell{
+  background:
+    radial-gradient(
+      circle at 86% 10%,
+      rgba(39,184,154,.14),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      #0b2435,
+      #102f44
+    );
+}
+
+
+/* =========================================================
+   KPI CARDS
+   ========================================================= */
+
+.dashboard-kpis .kpi-card{
+  position:relative;
+
+  overflow:hidden;
+
+  border:1px solid rgba(255,255,255,.07);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.08),
+      rgba(255,255,255,.045)
+    );
+}
+
+.dashboard-kpis .kpi-card::after{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  height:3px;
+
+  opacity:.9;
+}
+
+
+/* green */
+
+.kpi-green::after{
+  background:var(--dashboard-green);
+}
+
+.kpi-green > strong,
+.kpi-green .metric-number,
+.kpi-green .metric-verify,
+.kpi-green > small{
+  color:var(--dashboard-green-light);
+}
+
+
+/* coral */
+
+.kpi-coral::after{
+  background:var(--dashboard-coral);
+}
+
+.kpi-coral > strong,
+.kpi-coral .metric-number,
+.kpi-coral .metric-verify,
+.kpi-coral > small{
+  color:var(--dashboard-coral-light);
+}
+
+
+/* blue */
+
+.kpi-blue::after{
+  background:var(--dashboard-blue);
+}
+
+.kpi-blue > strong,
+.kpi-blue .metric-number,
+.kpi-blue .metric-verify,
+.kpi-blue > small{
+  color:var(--dashboard-blue-light);
+}
+
+
+/* amber */
+
+.kpi-amber::after{
+  background:var(--dashboard-amber);
+}
+
+.kpi-amber > strong,
+.kpi-amber .metric-number,
+.kpi-amber .metric-verify,
+.kpi-amber > small{
+  color:var(--dashboard-amber-light);
+}
+
+
+/* resolved words stay white */
+
+.kpi-card .metric-words{
+  color:var(--white);
+}
+
+
+/* =========================================================
+   CHART PANELS
+   ========================================================= */
+
+.chart-panel,
+.donut-panel,
+.quality-panel{
+  border-color:rgba(255,255,255,.07);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.06),
+      rgba(255,255,255,.035)
+    );
+}
+
+
+/* =========================================================
+   GRID LINES
+   ========================================================= */
+
+.hero-dashboard .grid-lines line{
+  stroke:rgba(255,255,255,.075);
+}
+
+
+/* =========================================================
+   MAIN TREND LINE — GREEN
+   ========================================================= */
+
+.hero-dashboard .trend-main{
+  fill:none;
+
+  stroke:var(--dashboard-green);
+
+  stroke-width:6;
+  stroke-linecap:round;
+
+  stroke-dasharray:900;
+  stroke-dashoffset:900;
+
+  filter:
+    drop-shadow(
+      0 0 6px rgba(39,184,154,.32)
+    );
+}
+
+
+/* =========================================================
+   COMPARISON LINE — CORAL
+   ========================================================= */
+
+.hero-dashboard .trend-comparison{
+  fill:none;
+
+  stroke:var(--dashboard-coral);
+
+  stroke-width:4;
+  stroke-linecap:round;
+
+  stroke-dasharray:8 11;
+  stroke-dashoffset:0;
+
+  opacity:.8;
+}
+
+
+/* only animate the main line */
+
+body.dashboard-active
+.hero-dashboard
+.trend-main{
+  animation:
+    drawLine 1.7s ease .48s forwards;
+}
+
+
+/* comparison fades in */
+
+body.dashboard-active
+.hero-dashboard
+.trend-comparison{
+  animation:
+    fade .8s ease 1.05s forwards;
+}
+
+
+/* =========================================================
+   CHART AREA
+   ========================================================= */
+
+.hero-dashboard .area-path{
+  fill:url(#heroAreaFill);
+  opacity:0;
+}
+
+
+/* =========================================================
+   CHART DOTS
+   ========================================================= */
+
+.hero-dashboard .chart-dots circle{
+  fill:#102f44;
+
+  stroke-width:4;
+
+  opacity:0;
+}
+
+.hero-dashboard .chart-dots .dot-green{
+  stroke:var(--dashboard-green);
+}
+
+.hero-dashboard .chart-dots .dot-coral{
+  stroke:var(--dashboard-coral);
+}
+
+.hero-dashboard .chart-dots .dot-blue{
+  stroke:var(--dashboard-blue);
+}
+
+.hero-dashboard .decision-dot{
+  stroke:var(--dashboard-green-light);
+
+  filter:
+    drop-shadow(
+      0 0 9px rgba(39,184,154,.85)
+    );
+}
+
+
+/* =========================================================
+   BETTER DECISIONS LABEL
+   ========================================================= */
+
+.decision-label{
+  color:#0b2638;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--dashboard-green-light),
+      #9be9da
+    );
+
+  box-shadow:
+    0 8px 20px rgba(39,184,154,.18);
+}
+
+
+/* =========================================================
+   SOURCE CLOUD
+   ========================================================= */
+
+.source-cloud span{
+  border-color:rgba(255,255,255,.1);
+
+  color:rgba(255,255,255,.68);
+
+  background:rgba(255,255,255,.065);
+}
+
+
+/* subtle source differentiation */
+
+.source-cloud span:nth-child(1){
+  border-color:rgba(39,184,154,.25);
+}
+
+.source-cloud span:nth-child(2){
+  border-color:rgba(244,127,95,.24);
+}
+
+.source-cloud span:nth-child(3){
+  border-color:rgba(95,143,211,.26);
+}
+
+.source-cloud span:nth-child(4){
+  border-color:rgba(232,163,74,.25);
+}
+
+
+/* =========================================================
+   PANEL PILL
+   ========================================================= */
+
+.panel-pill{
+  border-color:rgba(39,184,154,.18);
+
+  color:#9de7da !important;
+
+  background:rgba(39,184,154,.06);
+}
+
+
+/* =========================================================
+   DONUT
+   ========================================================= */
+
+.dashboard-donut{
+  background:
+    conic-gradient(
+      var(--dashboard-green) 0 40%,
+      var(--dashboard-blue) 40% 72%,
+      var(--dashboard-coral) 72% 100%
+    );
+}
+
+.dashboard-donut::before{
+  background:#173247;
+}
+
+
+/* =========================================================
+   LEGEND
+   ========================================================= */
+
+.legend-green{
+  background:var(--dashboard-green);
+}
+
+.legend-blue{
+  background:var(--dashboard-blue);
+}
+
+.legend-coral{
+  background:var(--dashboard-coral);
+}
+
+
+/* =========================================================
+   PRINCIPLES
+   ========================================================= */
+
+.principle-list li::before{
+  box-shadow:
+    0 0 0 4px rgba(255,255,255,.04);
+}
+
+.principle-green::before{
+  background:var(--dashboard-green) !important;
+}
+
+.principle-coral::before{
+  background:var(--dashboard-coral) !important;
+}
+
+.principle-blue::before{
+  background:var(--dashboard-blue) !important;
+}
+
+
+/* =========================================================
+   LIVE STATUS
+   ========================================================= */
+
+.live-status{
+  color:#9ce8da;
+
+  background:rgba(39,184,154,.11);
+
+  border:1px solid rgba(39,184,154,.11);
+}
+
+.live-status i{
+  background:var(--dashboard-green);
+}
+
+
+/* =========================================================
+   PROCESS LABELS
+   ========================================================= */
+
+.process-labels span:nth-child(1){
+  color:rgba(255,255,255,.42);
+}
+
+.process-labels span:nth-child(2){
+  color:var(--dashboard-blue-light);
+}
+
+.process-labels span:nth-child(3){
+  color:var(--dashboard-amber-light);
+}
+
+.process-labels span:nth-child(4){
+  color:var(--dashboard-coral-light);
+}
+
+.process-labels span:nth-child(5){
+  color:var(--dashboard-green-light);
+}
+
+
+/* =========================================================
+   OPTIONAL KPI BACKGROUND TINTS
+   ========================================================= */
+
+.kpi-green{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(39,184,154,.11),
+      rgba(255,255,255,.04)
+    ) !important;
+}
+
+.kpi-coral{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(244,127,95,.10),
+      rgba(255,255,255,.04)
+    ) !important;
+}
+
+.kpi-blue{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(95,143,211,.11),
+      rgba(255,255,255,.04)
+    ) !important;
+}
+
+.kpi-amber{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(232,163,74,.10),
+      rgba(255,255,255,.04)
+    ) !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:680px){
+
+  .dashboard-kpis{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero-dashboard .trend-comparison{
+    stroke-width:3;
+  }
+
 }
 
 
