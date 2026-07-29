@@ -1,10 +1,4 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home1/wsbiadmy/public_html/website_b8322a24/
-    - /bin/cp /home1/wsbiadmy/repositories/makesensedata/index.html $DEPLOYPATH
-    - /bin/cp -R /home1/wsbiadmy/repositories/makesensedata/css $DEPLOYPATH
-    - /bin/cp -R /home1/wsbiadmy/repositories/makesensedata/js $DEPLOYPATH
-    - /bin/cp -R /home1/wsbiadmy/repositories/makesensedata/assets $DEPLOYPATH
-    - /bin/cp -R /home1/wsbiadmy/repositories/makesensedata/images $DEPLOYPATH
-    - /bin/cp -R /home1/wsbiadmy/repositories/makesensedata/gender-pay-analytics $DEPLOYPATH
+    - /bin/rsync -av --delete --exclude='.git' --exclude='.github' --exclude='.vscode' --exclude='.DS_Store' --exclude='README.txt' --exclude='MakeSenseData.code-workspace' --exclude='Archive' /home1/wsbiadmy/repositories/makesensedata/ /home1/wsbiadmy/public_html/website_b8322a24/
