@@ -104,4 +104,167 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       window.setTimeout(startDashboard, 3900);
     }
+    /* =========================================================
+   CASE STUDY CAROUSEL
+   ========================================================= */
+
+document.querySelectorAll("[data-case-carousel]").forEach((carousel) => {
+
+  const slides = Array.from(
+    carousel.querySelectorAll("[data-case-slide]")
+  );
+
+  const dots = Array.from(
+    carousel.querySelectorAll("[data-case-dot]")
+  );
+
+  const prevButton = carousel.querySelector("[data-case-prev]");
+  const nextButton = carousel.querySelector("[data-case-next]");
+
+  let currentIndex = 0;
+
+
+  function showSlide(index) {
+
+    if (!slides.length) return;
+
+    if (index < 0) {
+      index = slides.length - 1;
+    }
+
+    if (index >= slides.length) {
+      index = 0;
+    }
+
+    currentIndex = index;
+
+
+    slides.forEach((slide, slideIndex) => {
+
+      const isActive = slideIndex === currentIndex;
+
+      slide.classList.toggle("is-active", isActive);
+
+      slide.setAttribute(
+        "aria-hidden",
+        isActive ? "false" : "true"
+      );
+
+    });
+
+
+    dots.forEach((dot, dotIndex) => {
+
+      const isActive = dotIndex === currentIndex;
+
+      dot.classList.toggle("is-active", isActive);
+
+      dot.setAttribute(
+        "aria-current",
+        isActive ? "true" : "false"
+      );
+
+    });
+
+  }
+
+
+  /* Previous */
+
+  prevButton?.addEventListener("click", () => {
+    showSlide(currentIndex - 1);
+  });
+
+
+  /* Next */
+
+  nextButton?.addEventListener("click", () => {
+    showSlide(currentIndex + 1);
+  });
+
+
+  /* Dots */
+
+  dots.forEach((dot) => {
+
+    dot.addEventListener("click", () => {
+
+      const index = Number(dot.dataset.caseDot);
+
+      if (!Number.isNaN(index)) {
+        showSlide(index);
+      }
+
+    });
+
+  });
+
+
+  /* Keyboard navigation */
+
+  carousel.setAttribute("tabindex", "0");
+
+  carousel.addEventListener("keydown", (event) => {
+
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      showSlide(currentIndex - 1);
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      showSlide(currentIndex + 1);
+    }
+
+  });
+
+
+  /* Swipe support */
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+
+  carousel.addEventListener(
+    "touchstart",
+    (event) => {
+
+      touchStartX =
+        event.changedTouches[0].screenX;
+
+    },
+    { passive:true }
+  );
+
+
+  carousel.addEventListener(
+    "touchend",
+    (event) => {
+
+      touchEndX =
+        event.changedTouches[0].screenX;
+
+      const distance =
+        touchEndX - touchStartX;
+
+      if (Math.abs(distance) < 50) {
+        return;
+      }
+
+      if (distance > 0) {
+        showSlide(currentIndex - 1);
+      } else {
+        showSlide(currentIndex + 1);
+      }
+
+    },
+    { passive:true }
+  );
+
+
+  /* Initialise */
+
+  showSlide(0);
+
+});
   }});

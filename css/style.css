@@ -3579,6 +3579,833 @@ body.dashboard-active .hero-dashboard .chart-dots circle{
   font-size:.92rem;
   font-weight:850;
 }
+/* =========================================================
+   CASE STUDY CAROUSEL — HOMEPAGE
+   ========================================================= */
+
+.case-carousel-section{
+  padding:90px 0;
+  background:var(--cream);
+}
+
+.case-carousel{
+  position:relative;
+  overflow:hidden;
+
+  border:1px solid var(--line);
+  border-radius:30px;
+
+  background:var(--white);
+
+  box-shadow:
+    0 28px 80px rgba(12,38,56,.10);
+}
+
+
+/* =========================================================
+   SLIDES
+   ========================================================= */
+
+.case-carousel-slide{
+  display:none;
+
+  grid-template-columns:
+    minmax(0,.92fr)
+    minmax(0,1.08fr);
+
+  min-height:650px;
+}
+
+.case-carousel-slide.is-active{
+  display:grid;
+
+  animation:
+    caseSlideIn .55s cubic-bezier(.22,1,.36,1);
+}
+
+
+/* =========================================================
+   LEFT COPY
+   ========================================================= */
+
+.case-carousel-copy{
+  min-width:0;
+
+  padding:clamp(48px,5vw,76px);
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.case-carousel-copy .eyebrow{
+  margin-bottom:24px;
+}
+
+.case-carousel-copy h2{
+  max-width:610px;
+
+  margin:0;
+
+  color:var(--navy);
+
+  font-size:clamp(3rem,4.5vw,5rem);
+  line-height:.98;
+  letter-spacing:-.055em;
+}
+
+.case-carousel-intro{
+  max-width:610px;
+
+  margin:30px 0 0;
+
+  color:var(--muted);
+
+  font-size:1.16rem;
+  line-height:1.7;
+}
+
+
+/* =========================================================
+   TAGS
+   ========================================================= */
+
+.case-carousel-tags{
+  margin-top:32px;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:10px;
+}
+
+.case-carousel-tags span{
+  padding:9px 14px;
+
+  border-radius:999px;
+
+  color:var(--navy);
+  background:var(--teal-soft);
+
+  font-size:.84rem;
+  font-weight:750;
+}
+
+
+/* =========================================================
+   LINKS / COMING SOON
+   ========================================================= */
+
+.case-carousel-link,
+.case-carousel-coming{
+  width:max-content;
+
+  margin-top:42px;
+
+  display:inline-flex;
+  align-items:center;
+
+  gap:12px;
+
+  font-weight:850;
+}
+
+.case-carousel-link{
+  color:var(--navy);
+
+  transition:
+    color .2s ease,
+    gap .2s ease;
+}
+
+.case-carousel-link:hover{
+  gap:16px;
+
+  color:var(--teal-dark);
+}
+
+.case-carousel-coming{
+  padding:9px 14px;
+
+  border-radius:999px;
+
+  color:var(--teal-dark);
+  background:var(--teal-soft);
+
+  font-size:.8rem;
+}
+
+
+/* =========================================================
+   RIGHT VISUAL
+   ========================================================= */
+
+.case-carousel-visual{
+  position:relative;
+
+  min-width:0;
+
+  padding:50px 32px 82px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 80% 18%,
+      rgba(33,184,158,.18),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      #0b2435,
+      #0f3145
+    );
+}
+
+.case-carousel-visual::before{
+  content:"";
+
+  position:absolute;
+
+  width:430px;
+  height:430px;
+
+  right:-145px;
+  bottom:-180px;
+
+  border-radius:50%;
+
+  background:rgba(33,184,158,.07);
+
+  pointer-events:none;
+}
+
+
+/* =========================================================
+   REPORT WINDOWS
+   ========================================================= */
+
+.case-report-window,
+.case-placeholder-window{
+  position:relative;
+  z-index:2;
+
+  width:min(108%,820px);
+
+  overflow:hidden;
+
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:18px;
+
+  background:var(--white);
+
+  box-shadow:
+    0 28px 65px rgba(0,0,0,.34);
+
+  transform:rotate(-1deg);
+
+  transition:
+    transform .4s cubic-bezier(.22,1,.36,1),
+    box-shadow .4s ease;
+}
+
+.case-carousel-visual:hover .case-report-window,
+.case-carousel-visual:hover .case-placeholder-window{
+  transform:
+    rotate(0deg)
+    translateY(-5px)
+    scale(1.015);
+
+  box-shadow:
+    0 34px 78px rgba(0,0,0,.38);
+}
+
+
+/* =========================================================
+   REPORT TOOLBAR
+   ========================================================= */
+
+.case-report-bar{
+  height:44px;
+
+  padding:0 16px;
+
+  display:flex;
+  align-items:center;
+
+  gap:14px;
+
+  overflow:hidden;
+
+  border-bottom:1px solid rgba(12,38,56,.09);
+
+  color:#6d7b85;
+  background:#f6f8f8;
+
+  font-size:.72rem;
+  font-weight:750;
+}
+
+.case-report-bar > span{
+  overflow:hidden;
+
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+.case-window-dots{
+  flex:0 0 auto;
+
+  display:flex;
+
+  gap:6px;
+}
+
+.case-window-dots span{
+  width:8px;
+  height:8px;
+
+  display:block;
+
+  border-radius:50%;
+
+  background:#c7d1d5;
+}
+
+
+/* =========================================================
+   LIVE REPORT SCREENSHOT
+   ========================================================= */
+
+.case-report-image{
+  width:100%;
+  aspect-ratio:16 / 9;
+
+  overflow:hidden;
+
+  background:var(--white);
+}
+
+.case-report-image img{
+  width:100%;
+  height:100%;
+
+  display:block;
+
+  object-fit:cover;
+  object-position:center top;
+
+  transform:scale(1.10);
+  transform-origin:center top;
+
+  transition:
+    transform .5s cubic-bezier(.22,1,.36,1);
+}
+
+.case-carousel-visual:hover .case-report-image img{
+  transform:scale(1.13);
+}
+
+
+/* =========================================================
+   REPORT FOOTER
+   ========================================================= */
+
+.case-report-footer{
+  position:absolute;
+  z-index:3;
+
+  left:32px;
+  right:32px;
+  bottom:27px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+
+  color:var(--white);
+}
+
+.case-report-footer > span{
+  color:rgba(255,255,255,.6);
+
+  font-size:.7rem;
+  font-weight:850;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+
+.case-report-footer a,
+.case-report-footer strong{
+  color:var(--white);
+
+  font-size:.88rem;
+  font-weight:850;
+}
+
+.case-report-footer a:hover{
+  color:#7ce6d2;
+}
+
+
+/* =========================================================
+   PLACEHOLDER DASHBOARDS
+   ========================================================= */
+
+.case-placeholder-dashboard{
+  min-height:380px;
+
+  padding:24px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f7f9f9,
+      #edf1f1
+    );
+}
+
+.placeholder-kpis{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+
+  gap:10px;
+}
+
+.placeholder-kpis span{
+  height:72px;
+
+  border:1px solid rgba(12,38,56,.08);
+  border-radius:10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(33,184,158,.14),
+      rgba(12,38,56,.04)
+    );
+}
+
+.placeholder-main{
+  margin-top:22px;
+
+  display:grid;
+  grid-template-columns:1.7fr .8fr;
+
+  gap:14px;
+}
+
+.placeholder-chart,
+.placeholder-funnel,
+.placeholder-lines,
+.placeholder-side{
+  min-height:220px;
+
+  padding:18px;
+
+  border:1px solid rgba(12,38,56,.08);
+  border-radius:12px;
+
+  background:rgba(255,255,255,.75);
+}
+
+
+/* Finance placeholder */
+
+.placeholder-chart{
+  display:flex;
+  align-items:flex-end;
+
+  gap:9px;
+}
+
+.placeholder-chart i{
+  flex:1;
+
+  display:block;
+
+  border-radius:5px 5px 2px 2px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--teal),
+      var(--teal-dark)
+    );
+}
+
+
+/* Sales placeholder */
+
+.placeholder-funnel{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  gap:12px;
+}
+
+.placeholder-funnel span{
+  height:26px;
+
+  display:block;
+
+  border-radius:6px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--teal),
+      rgba(33,184,158,.45)
+    );
+}
+
+
+/* Operations placeholder */
+
+.placeholder-lines{
+  display:grid;
+  align-content:center;
+
+  gap:16px;
+}
+
+.placeholder-lines span{
+  position:relative;
+
+  height:12px;
+
+  overflow:hidden;
+
+  border-radius:999px;
+
+  background:#dfe7e7;
+}
+
+.placeholder-lines span::after{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  width:var(--placeholder-width,70%);
+
+  border-radius:inherit;
+
+  background:var(--teal);
+}
+
+.placeholder-lines span:nth-child(1){
+  --placeholder-width:84%;
+}
+
+.placeholder-lines span:nth-child(2){
+  --placeholder-width:62%;
+}
+
+.placeholder-lines span:nth-child(3){
+  --placeholder-width:91%;
+}
+
+.placeholder-lines span:nth-child(4){
+  --placeholder-width:70%;
+}
+
+
+/* Side placeholder */
+
+.placeholder-side{
+  display:grid;
+  align-content:start;
+
+  gap:12px;
+}
+
+.placeholder-side span{
+  height:48px;
+
+  display:block;
+
+  border-radius:8px;
+
+  background:#e3e9e9;
+}
+
+
+/* =========================================================
+   CAROUSEL ARROWS
+   ========================================================= */
+
+.case-carousel-arrow{
+  position:absolute;
+  z-index:10;
+
+  top:50%;
+
+  width:48px;
+  height:48px;
+
+  display:grid;
+  place-items:center;
+
+  padding:0;
+
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:50%;
+
+  color:var(--white);
+  background:var(--navy);
+
+  box-shadow:
+    0 10px 28px rgba(12,38,56,.24);
+
+  font-size:1.25rem;
+
+  cursor:pointer;
+
+  transform:translateY(-50%);
+
+  transition:
+    transform .2s ease,
+    background .2s ease;
+}
+
+.case-carousel-arrow:hover{
+  background:var(--teal-dark);
+
+  transform:
+    translateY(-50%)
+    scale(1.06);
+}
+
+.case-carousel-prev{
+  left:calc(46% - 24px);
+}
+
+.case-carousel-next{
+  right:18px;
+}
+
+
+/* =========================================================
+   CAROUSEL DOTS
+   ========================================================= */
+
+.case-carousel-dots{
+  position:absolute;
+  z-index:10;
+
+  right:32px;
+  bottom:28px;
+
+  display:flex;
+
+  gap:8px;
+}
+
+.case-carousel-dots button{
+  width:8px;
+  height:8px;
+
+  padding:0;
+
+  border:0;
+  border-radius:50%;
+
+  background:rgba(255,255,255,.38);
+
+  cursor:pointer;
+
+  transition:
+    width .25s ease,
+    background .25s ease;
+}
+
+.case-carousel-dots button.is-active{
+  width:24px;
+
+  border-radius:999px;
+
+  background:var(--teal);
+}
+
+
+/* =========================================================
+   SLIDE ANIMATION
+   ========================================================= */
+
+@keyframes caseSlideIn{
+  from{
+    opacity:0;
+    transform:translateX(18px);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media(max-width:980px){
+
+  .case-carousel-slide,
+  .case-carousel-slide.is-active{
+    grid-template-columns:1fr;
+  }
+
+  .case-carousel-copy{
+    padding:52px 36px;
+  }
+
+  .case-carousel-visual{
+    min-height:520px;
+
+    padding:48px 34px 78px;
+  }
+
+  .case-carousel-prev{
+    left:16px;
+    top:auto;
+    bottom:20px;
+
+    transform:none;
+  }
+
+  .case-carousel-next{
+    right:16px;
+    top:auto;
+    bottom:20px;
+
+    transform:none;
+  }
+
+  .case-carousel-arrow:hover{
+    transform:scale(1.05);
+  }
+
+  .case-carousel-dots{
+    left:50%;
+    right:auto;
+
+    bottom:38px;
+
+    transform:translateX(-50%);
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:620px){
+
+  .case-carousel-section{
+    padding:60px 0;
+  }
+
+  .case-carousel{
+    border-radius:22px;
+  }
+
+  .case-carousel-slide{
+    min-height:0;
+  }
+
+  .case-carousel-copy{
+    padding:42px 24px 48px;
+  }
+
+  .case-carousel-copy h2{
+    font-size:clamp(2.65rem,13vw,4rem);
+  }
+
+  .case-carousel-intro{
+    font-size:1.04rem;
+  }
+
+  .case-carousel-visual{
+    min-height:410px;
+
+    padding:32px 18px 72px;
+  }
+
+  .case-report-window,
+  .case-placeholder-window{
+    width:100%;
+
+    border-radius:13px;
+
+    transform:none;
+  }
+
+  .case-report-bar{
+    height:36px;
+  }
+
+  .case-placeholder-dashboard{
+    min-height:280px;
+
+    padding:15px;
+  }
+
+  .placeholder-kpis{
+    gap:6px;
+  }
+
+  .placeholder-kpis span{
+    height:48px;
+  }
+
+  .placeholder-main{
+    grid-template-columns:1fr;
+
+    gap:8px;
+  }
+
+  .placeholder-chart,
+  .placeholder-funnel,
+  .placeholder-lines{
+    min-height:150px;
+  }
+
+  .placeholder-side{
+    display:none;
+  }
+
+  .case-report-footer{
+    left:18px;
+    right:18px;
+    bottom:20px;
+  }
+
+  .case-report-footer > span{
+    display:none;
+  }
+
+  .case-carousel-arrow{
+    width:42px;
+    height:42px;
+  }
+
+  .case-carousel-dots{
+    bottom:31px;
+  }
+
+}
 
 
 /* =========================================================
