@@ -5348,6 +5348,86 @@ body.dashboard-active
   }
 
 }
+/* =========================================================
+   WHY SECTION — COMPACT LAYOUT
+   ========================================================= */
+
+.why-section{
+  padding-top:90px;
+  padding-bottom:90px;
+}
+
+.why-grid{
+  display:grid;
+
+  /* give the headline more room */
+  grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);
+
+  gap:80px;
+
+  /* don't push the intro to the bottom */
+  align-items:center;
+}
+
+.why-heading h2{
+  max-width:820px;
+
+  margin-top:28px;
+
+  font-size:clamp(3.4rem,5.4vw,5.8rem);
+  line-height:.96;
+  letter-spacing:-.055em;
+}
+
+.why-intro{
+  align-self:center;
+
+  max-width:620px;
+}
+
+.why-intro p{
+  margin:0;
+
+  font-size:1.25rem;
+  line-height:1.55;
+}
+
+
+/* Pull the problem cards closer to the opening */
+
+.why-problems{
+  margin-top:70px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .why-section{
+    padding-top:70px;
+    padding-bottom:70px;
+  }
+
+  .why-grid{
+    grid-template-columns:1fr;
+    gap:32px;
+  }
+
+  .why-heading h2{
+    max-width:700px;
+    font-size:clamp(3rem,9vw,4.8rem);
+  }
+
+  .why-intro{
+    max-width:680px;
+  }
+
+  .why-problems{
+    margin-top:50px;
+  }
+
+}
 
 
 /* =========================================================
