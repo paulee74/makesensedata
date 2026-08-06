@@ -368,6 +368,66 @@ button{
   letter-spacing:-.06em;
 }
 
+/* ==================================================
+   HERO COLOUR EMPHASIS
+   ================================================== */
+
+.hero-accent{
+  display:inline-block;
+  position:relative;
+  opacity:0;
+  filter:blur(5px);
+  transform:translateY(14px);
+}
+
+.hero-accent-teal{
+  color:var(--teal);
+}
+
+.hero-accent-coral{
+  color:var(--dashboard-coral);
+}
+
+.hero-accent-coral::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-.06em;
+  height:.08em;
+  border-radius:999px;
+  background:linear-gradient(
+    90deg,
+    rgba(244,127,95,.2),
+    var(--dashboard-coral)
+  );
+  transform:scaleX(0);
+  transform-origin:left;
+}
+
+body.hero-ready .hero-accent-teal{
+  animation:
+    heroAccentIn .8s cubic-bezier(.22,1,.36,1) 1.35s forwards;
+}
+
+body.hero-ready .hero-accent-coral{
+  animation:
+    heroAccentIn .8s cubic-bezier(.22,1,.36,1) 2.05s forwards;
+}
+
+body.hero-ready .hero-accent-coral::after{
+  animation:
+    underline .7s cubic-bezier(.22,1,.36,1) 2.65s forwards;
+}
+
+@keyframes heroAccentIn{
+  to{
+    opacity:1;
+    filter:none;
+    transform:none;
+  }
+}
+
 .hero-line{
   display:block;
 }
@@ -571,7 +631,8 @@ body.hero-ready .hero-dashboard{
 }
 
 .dashboard-toolbar strong{
-  font-size:1.05rem;
+  font-size:.88rem;
+  line-height:1.25;
 }
 
 .live-status{
@@ -583,7 +644,7 @@ body.hero-ready .hero-dashboard{
   border-radius:999px;
   color:#9ce8da;
   background:rgba(39,184,154,.11);
-  font-size:.7rem;
+  font-size:.62rem;
   font-weight:800;
   letter-spacing:.06em;
   text-transform:uppercase;
@@ -639,9 +700,24 @@ body.hero-ready .hero-dashboard{
 }
 
 .kpi-card > strong{
-  margin-bottom:4px;
-  font-size:clamp(1rem,1.45vw,1.45rem);
-  line-height:1;
+  margin-bottom:6px;
+  font-size:clamp(.82rem,1vw,1.05rem);
+  line-height:1.08;
+}
+
+.kpi-card .metric-words{
+  font-size:clamp(.82rem,1vw,1.05rem);
+  line-height:1.08;
+  letter-spacing:-.02em;
+}
+
+.kpi-card > span{
+  font-size:.6rem;
+}
+
+.kpi-card > small{
+  font-size:.52rem;
+  line-height:1.3;
 }
 
 .kpi-card > small{
@@ -932,10 +1008,10 @@ body.hero-ready .hero-dashboard{
 .legend-coral{background:var(--dashboard-coral)}
 
 .principles-panel > div strong{
-  max-width:180px;
+  max-width:165px;
   margin-top:4px;
-  font-size:.79rem;
-  line-height:1.22;
+  font-size:.68rem;
+  line-height:1.25;
 }
 
 .principle-list{
@@ -3327,5 +3403,18 @@ body.dashboard-active .source-cloud span:nth-child(5){animation-delay:.32s,1.87s
     filter:none;
     transform:none;
   }
+  @media(prefers-reduced-motion:reduce){
+
+  .hero-accent{
+    opacity:1 !important;
+    filter:none !important;
+    transform:none !important;
+  }
+
+  .hero-accent-coral::after{
+    transform:scaleX(1) !important;
+  }
+
+}
 
 }
