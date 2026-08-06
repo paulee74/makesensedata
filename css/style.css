@@ -363,9 +363,9 @@ button{
   max-width:760px;
   margin:0 0 28px;
   color:var(--navy);
-  font-size:clamp(3.7rem,6.15vw,6.6rem);
-  line-height:.92;
-  letter-spacing:-.075em;
+  font-size:clamp(3.1rem,5.2vw,5.6rem);
+  line-height:.96;
+  letter-spacing:-.06em;
 }
 
 .hero-line{
