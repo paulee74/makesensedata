@@ -2,15 +2,41 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Preview Make Sense Data",
+      "type": "shell",
+      "command": "python3 -m http.server 5500",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
       "label": "Publish Make Sense Data",
       "type": "shell",
-      "command": "git add . && git commit -m \"Update website\" || true && git publish",
+      "command": "git add -A && (git diff --cached --quiet || git commit -m \"${input:commitMessage}\") && git push origin main && git push bluehost main",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
         "panel": "shared",
         "clear": true
       }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "commitMessage",
+      "type": "promptString",
+      "description": "Describe the website change",
+      "default": "Update website"
     }
   ]
 }

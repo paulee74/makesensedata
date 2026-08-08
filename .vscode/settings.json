@@ -2,5 +2,8 @@
     "editor.fontSize": 16,
     "editor.wordWrap": "on",
     "workbench.colorTheme": "Visual Studio Light",
-    "files.autoSave": "afterDelay"
+    "files.autoSave": "afterDelay",
+    "liveServer.settings.root": "/",
+    "liveServer.settings.port": 5500,
+    "liveServer.settings.NoBrowser": false
 }

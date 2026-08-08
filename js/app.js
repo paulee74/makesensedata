@@ -4,16 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
      GLOBAL
      ========================================================= */
 
-  const year = document.getElementById("year");
+  const year =
+    document.getElementById("year");
 
   const menuToggle =
     document.querySelector(".menu-toggle");
 
   const mainNav =
     document.querySelector(".main-nav");
-
-  const revealItems =
-    document.querySelectorAll(".reveal");
 
   const dashboard =
     document.querySelector(".hero-dashboard");
@@ -39,7 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================================================= */
 
   requestAnimationFrame(() => {
-    document.body.classList.add("hero-ready");
+    document.body.classList.add(
+      "hero-ready"
+    );
   });
 
 
@@ -54,7 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
       () => {
 
         const isOpen =
-          mainNav.classList.toggle("open");
+          mainNav.classList.toggle(
+            "open"
+          );
 
         document.body.classList.toggle(
           "menu-open",
@@ -78,7 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
           "click",
           () => {
 
-            mainNav.classList.remove("open");
+            mainNav.classList.remove(
+              "open"
+            );
 
             document.body.classList.remove(
               "menu-open"
@@ -94,6 +98,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
       });
 
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+
+        if (
+          event.key === "Escape" &&
+          mainNav.classList.contains("open")
+        ) {
+
+          mainNav.classList.remove(
+            "open"
+          );
+
+          document.body.classList.remove(
+            "menu-open"
+          );
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      }
+    );
+
   }
 
 
@@ -101,15 +133,36 @@ document.addEventListener("DOMContentLoaded", () => {
      REVEAL ON SCROLL
      ========================================================= */
 
-  if ("IntersectionObserver" in window) {
+  const revealItems =
+    document.querySelectorAll(
+      ".reveal"
+    );
+
+
+  if (reduceMotion) {
+
+    revealItems.forEach((item) => {
+      item.classList.add("visible");
+    });
+
+  }
+
+  else if (
+    "IntersectionObserver" in window
+  ) {
 
     const revealObserver =
       new IntersectionObserver(
         (entries) => {
 
-          entries.forEach((entry) => {
+          entries.forEach(
+            (entry) => {
 
-            if (entry.isIntersecting) {
+              if (
+                !entry.isIntersecting
+              ) {
+                return;
+              }
 
               entry.target.classList.add(
                 "visible"
@@ -120,12 +173,13 @@ document.addEventListener("DOMContentLoaded", () => {
               );
 
             }
-
-          });
+          );
 
         },
         {
-          threshold:0.14
+          threshold:0.16,
+          rootMargin:
+            "0px 0px -40px 0px"
         }
       );
 
@@ -134,7 +188,9 @@ document.addEventListener("DOMContentLoaded", () => {
       revealObserver.observe(item);
     });
 
-  } else {
+  }
+
+  else {
 
     revealItems.forEach((item) => {
       item.classList.add("visible");
@@ -153,17 +209,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* ---------------------------------------------------------
-       COUNT A SINGLE NUMBER
+       COUNT A SINGLE METRIC
        --------------------------------------------------------- */
 
     function countMetric(
       element,
       target,
-      suffix,
-      duration
+      suffix = "",
+      duration = 1000
     ) {
-
-      const startValue = 0;
 
       let startTime = null;
 
@@ -186,10 +240,9 @@ document.addEventListener("DOMContentLoaded", () => {
           );
 
 
-        /* easeOutCubic */
-
         const eased =
-          1 - Math.pow(
+          1 -
+          Math.pow(
             1 - progress,
             3
           );
@@ -197,9 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const value =
           Math.round(
-            startValue +
-            (target - startValue) *
-            eased
+            target * eased
           );
 
 
@@ -209,24 +260,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (progress < 1) {
 
-          requestAnimationFrame(step);
+          requestAnimationFrame(
+            step
+          );
 
         }
 
       }
 
 
-      requestAnimationFrame(step);
+      requestAnimationFrame(
+        step
+      );
 
     }
 
 
     /* ---------------------------------------------------------
        KPI SEQUENCE
-
-       Number counts up
-       → verification word
-       → useful wording
        --------------------------------------------------------- */
 
     function animateServiceMetrics() {
@@ -245,7 +296,10 @@ document.addEventListener("DOMContentLoaded", () => {
               ".metric-number"
             );
 
-          if (!numberEl) return;
+
+          if (!numberEl) {
+            return;
+          }
 
 
           const target =
@@ -266,8 +320,6 @@ document.addEventListener("DOMContentLoaded", () => {
             1050;
 
 
-          /* reset */
-
           metric.classList.remove(
             "verified",
             "resolved"
@@ -277,8 +329,6 @@ document.addEventListener("DOMContentLoaded", () => {
           numberEl.textContent =
             `0${suffix}`;
 
-
-          /* count */
 
           window.setTimeout(
             () => {
@@ -295,8 +345,6 @@ document.addEventListener("DOMContentLoaded", () => {
           );
 
 
-          /* verification state */
-
           window.setTimeout(
             () => {
 
@@ -310,8 +358,6 @@ document.addEventListener("DOMContentLoaded", () => {
             180
           );
 
-
-          /* final wording */
 
           window.setTimeout(
             () => {
@@ -342,7 +388,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function startDashboard() {
 
-      if (dashboardStarted) return;
+      if (dashboardStarted) {
+        return;
+      }
+
 
       dashboardStarted = true;
 
@@ -379,13 +428,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* dashboard follows hero entrance */
-
     if (reduceMotion) {
 
       startDashboard();
 
-    } else {
+    }
+
+    else {
 
       window.setTimeout(
         startDashboard,
@@ -402,7 +451,9 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================================================= */
 
   document
-    .querySelectorAll(".case-browser")
+    .querySelectorAll(
+      ".case-browser"
+    )
     .forEach((browser) => {
 
 
@@ -446,7 +497,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
       /* -------------------------------------------------------
-         SELECT CASE STUDY
+         SELECT CASE
          ------------------------------------------------------- */
 
       function selectCase(
@@ -454,7 +505,9 @@ document.addEventListener("DOMContentLoaded", () => {
         scrollCard = true
       ) {
 
-        if (!cards.length) return;
+        if (!cards.length) {
+          return;
+        }
 
 
         if (index < 0) {
@@ -462,15 +515,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        if (index >= cards.length) {
+        if (
+          index >= cards.length
+        ) {
           index = 0;
         }
 
 
         currentIndex = index;
 
-
-        /* cards */
 
         cards.forEach(
           (card, cardIndex) => {
@@ -497,8 +550,6 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-        /* left copy */
-
         copyBlocks.forEach(
           (copy, copyIndex) => {
 
@@ -511,8 +562,6 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         );
 
-
-        /* dots */
 
         dots.forEach(
           (dot, dotIndex) => {
@@ -535,7 +584,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 "true"
               );
 
-            } else {
+            }
+
+            else {
 
               dot.removeAttribute(
                 "aria-current"
@@ -547,10 +598,6 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-        /* mobile only:
-           scroll card horizontally after
-           user interaction, never on load */
-
         if (
           scrollCard &&
           window.innerWidth <= 820
@@ -558,7 +605,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
           cards[currentIndex]
             ?.scrollIntoView({
-              behavior:"smooth",
+              behavior:
+                reduceMotion
+                  ? "auto"
+                  : "smooth",
               block:"nearest",
               inline:"center"
             });
@@ -579,11 +629,6 @@ document.addEventListener("DOMContentLoaded", () => {
             "click",
             (event) => {
 
-              /*
-               If the user clicked the real
-               case-study link, allow it to open.
-              */
-
               if (
                 event.target.closest("a")
               ) {
@@ -597,26 +642,21 @@ document.addEventListener("DOMContentLoaded", () => {
           );
 
 
-          /*
-           First card is a div with
-           role="button", so support keyboard.
-          */
-
           card.addEventListener(
             "keydown",
             (event) => {
 
               if (
+                event.target.closest("a")
+              ) {
+                return;
+              }
+
+
+              if (
                 event.key === "Enter" ||
                 event.key === " "
               ) {
-
-                if (
-                  event.target.closest("a")
-                ) {
-                  return;
-                }
-
 
                 event.preventDefault();
 
@@ -689,19 +729,141 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       );
 
+      /* =====================================================
+   CASE STUDY MOBILE AUTO CAROUSEL
+   ===================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const cards = document.querySelectorAll(".case-browser-card");
+  const copies = document.querySelectorAll(".case-browser-copy");
+  const dots = document.querySelectorAll("[data-case-browser-dot]");
+
+  if (!cards.length) return;
+
+
+  let currentCase = 0;
+  let timer;
+
+
+  function showCase(index){
+
+    currentCase = index;
+
+
+    cards.forEach((card,i)=>{
+
+      card.classList.toggle(
+        "is-active",
+        i === index
+      );
+
+      card.setAttribute(
+        "aria-pressed",
+        i === index ? "true" : "false"
+      );
+
+    });
+
+
+    copies.forEach((copy,i)=>{
+
+      copy.classList.toggle(
+        "is-active",
+        i === index
+      );
+
+    });
+
+
+    dots.forEach((dot,i)=>{
+
+      dot.classList.toggle(
+        "is-active",
+        i === index
+      );
+
+    });
+
+  }
+
+
+
+  function nextCase(){
+
+    let next = currentCase + 1;
+
+    if(next >= cards.length){
+      next = 0;
+    }
+
+    showCase(next);
+
+  }
+
+
+
+  function startCarousel(){
+
+    clearInterval(timer);
+
+    timer = setInterval(()=>{
+
+      if(window.innerWidth <= 820){
+        nextCase();
+      }
+
+    },4000);
+
+  }
+
+
+
+  cards.forEach((card,index)=>{
+
+    card.addEventListener(
+      "click",
+      ()=>{
+
+        showCase(index);
+        startCarousel();
+
+      }
+    );
+
+  });
+
+
+
+  dots.forEach((dot,index)=>{
+
+    dot.addEventListener(
+      "click",
+      ()=>{
+
+        showCase(index);
+        startCarousel();
+
+      }
+    );
+
+  });
+
+
+
+  startCarousel();
+
+
+});
+
 
       /* -------------------------------------------------------
-         KEYBOARD LEFT / RIGHT
+         KEYBOARD NAVIGATION
          ------------------------------------------------------- */
 
       browser.addEventListener(
         "keydown",
         (event) => {
-
-          /*
-           Don't hijack keys while a link
-           or button itself has focus.
-          */
 
           if (
             event.target.closest(
@@ -743,8 +905,6 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
 
-      /* browser itself can receive focus */
-
       browser.setAttribute(
         "tabindex",
         "0"
@@ -753,10 +913,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       /* -------------------------------------------------------
          INITIALISE
-
-         IMPORTANT:
-         false prevents mobile page jumping
-         to this section on page load.
          ------------------------------------------------------- */
 
       selectCase(
