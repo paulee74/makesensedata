@@ -5,6 +5,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
 import html
+import hashlib
 import json
 import re
 import threading
@@ -42,7 +43,8 @@ EDITOR_ASSETS = r"""
   @media (max-width: 620px) { #local-editor-bar { left: 10px; right: 10px; bottom: 10px;
     justify-content: center; } }
 </style>
-<div id="local-editor-bar" role="toolbar" aria-label="Local page editor">
+<div id="local-editor-bar" role="toolbar" aria-label="Local page editor"
+  data-page-version="__LOCAL_EDITOR_PAGE_VERSION__">
   <span id="local-editor-status">Local preview</span>
   <button type="button" data-action="edit">Edit text</button>
   <button type="button" data-action="save" hidden>Save changes</button>
@@ -116,15 +118,13 @@ EDITOR_ASSETS = r"""
     try {
       const response = await fetch('/__local_editor/save', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ changes })
+        body: JSON.stringify({ changes, pageVersion: bar.dataset.pageVersion })
       });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || 'Unable to save');
       finishEditing();
-      setStatus(`${result.saved} change${result.saved === 1 ? '' : 's'} saved to index.html`);
-      originals = new Map(fields.map((field) => [field.dataset.localEditId, {
-        html: field.innerHTML, text: cleanText(field.innerText)
-      }]));
+      setStatus(`${result.saved} change${result.saved === 1 ? '' : 's'} saved — refreshing preview…`);
+      window.setTimeout(() => window.location.reload(), 500);
     } catch (error) {
       setStatus(error.message);
     } finally {
@@ -177,13 +177,16 @@ def add_editor(source):
         cursor = match.end()
     pieces.append(source[cursor:])
     rendered = "".join(pieces)
-    return rendered.replace("</body>", EDITOR_ASSETS + "\n</body>", 1)
+    page_version = hashlib.sha256(source.encode("utf-8")).hexdigest()
+    editor_assets = EDITOR_ASSETS.replace("__LOCAL_EDITOR_PAGE_VERSION__", page_version)
+    return rendered.replace("</body>", editor_assets + "\n</body>", 1)
 
 
-def apply_changes(source, changes):
+def apply_changes(source, changes, trust_positions=False):
     matches = editable_matches(source)
     replacements = []
-    used = set()
+    used_positions = set()
+    used_starts = set()
     for change in changes:
         try:
             position = int(change["id"])
@@ -191,16 +194,31 @@ def apply_changes(source, changes):
             expected = str(change["originalText"])
         except (KeyError, TypeError, ValueError):
             raise ValueError("The editor sent an invalid change.")
-        if position in used or position < 0 or position >= len(matches) or not new_text:
+        if position in used_positions or position < 0 or not new_text:
             raise ValueError("The editor sent an invalid change.")
-        used.add(position)
-        match = matches[position]
-        if normalized_text(match.group("content")) != expected:
-            raise ValueError("index.html changed after Edit was opened. Cancel, refresh, and try again.")
+        used_positions.add(position)
+        match = matches[position] if position < len(matches) else None
+        if match is None or (not trust_positions and normalized_text(match.group("content")) != expected):
+            # A separate edit elsewhere can change which plain-text elements are
+            # eligible and therefore shift their temporary browser positions.
+            # Recover only when the original target is still uniquely identifiable.
+            candidates = [
+                candidate for candidate in matches
+                if normalized_text(candidate.group("content")) == expected
+                and candidate.start() not in used_starts
+            ]
+            if len(candidates) != 1:
+                raise ValueError(
+                    "This text changed outside the visual editor. Refresh the page and try again."
+                )
+            match = candidates[0]
         raw = match.group("content")
         leading = re.match(r"^\s*", raw).group(0)
         trailing = re.search(r"\s*$", raw).group(0)
         replacement = leading + html.escape(new_text, quote=False) + trailing
+        if match.start() in used_starts:
+            raise ValueError("The editor sent the same text area more than once.")
+        used_starts.add(match.start())
         replacements.append((match.start("content"), match.end("content"), replacement))
     for start, end, replacement in sorted(replacements, reverse=True):
         source = source[:start] + replacement + source[end:]
@@ -241,10 +259,16 @@ class LocalEditorHandler(SimpleHTTPRequestHandler):
                 raise ValueError("Invalid request size.")
             payload = json.loads(self.rfile.read(length))
             changes = payload.get("changes", [])
+            page_version = payload.get("pageVersion", "")
             if not isinstance(changes, list) or not changes:
                 raise ValueError("There are no changes to save.")
             source = INDEX.read_text(encoding="utf-8")
-            updated = apply_changes(source, changes)
+            current_version = hashlib.sha256(source.encode("utf-8")).hexdigest()
+            updated = apply_changes(
+                source,
+                changes,
+                trust_positions=(page_version == current_version),
+            )
             INDEX.write_text(updated, encoding="utf-8")
             self._json(200, {"saved": len(changes)})
         except (ValueError, json.JSONDecodeError) as error:
