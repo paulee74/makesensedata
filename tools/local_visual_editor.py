@@ -18,7 +18,6 @@ PORT = 5500
 EDITABLE_PAGES = {
     "/": ROOT / "index.html",
     "/about/": ROOT / "about" / "index.html",
-    "/how-we-work/": ROOT / "how-we-work" / "index.html",
 }
 EDITABLE_TAGS = ("h1", "h2", "h3", "p")
 ELEMENT_RE = re.compile(
@@ -198,8 +197,6 @@ def canonical_page_path(request_path):
         return "/"
     if path in ("/about", "/about/", "/about/index.html"):
         return "/about/"
-    if path in ("/how-we-work", "/how-we-work/", "/how-we-work/index.html"):
-        return "/how-we-work/"
     return None
 
 
