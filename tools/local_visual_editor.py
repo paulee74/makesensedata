@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local-only visual text editor for the Make Sense Data homepage."""
+"""Local-only visual text editor for selected Make Sense Data pages."""
 
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -13,9 +13,13 @@ import webbrowser
 
 
 ROOT = Path(__file__).resolve().parent.parent
-INDEX = ROOT / "index.html"
 HOST = "127.0.0.1"
 PORT = 5500
+EDITABLE_PAGES = {
+    "/": ROOT / "index.html",
+    "/about/": ROOT / "about" / "index.html",
+    "/how-we-work/": ROOT / "how-we-work" / "index.html",
+}
 EDITABLE_TAGS = ("h1", "h2", "h3", "p")
 ELEMENT_RE = re.compile(
     r"<(?P<tag>" + "|".join(EDITABLE_TAGS) + r")(?P<attrs>[^>]*)>"
@@ -44,7 +48,8 @@ EDITOR_ASSETS = r"""
     justify-content: center; } }
 </style>
 <div id="local-editor-bar" role="toolbar" aria-label="Local page editor"
-  data-page-version="__LOCAL_EDITOR_PAGE_VERSION__">
+  data-page-version="__LOCAL_EDITOR_PAGE_VERSION__"
+  data-page-path="__LOCAL_EDITOR_PAGE_PATH__">
   <span id="local-editor-status">Local preview</span>
   <button type="button" data-action="edit">Edit text</button>
   <button type="button" data-action="save" hidden>Save changes</button>
@@ -118,7 +123,11 @@ EDITOR_ASSETS = r"""
     try {
       const response = await fetch('/__local_editor/save', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ changes, pageVersion: bar.dataset.pageVersion })
+        body: JSON.stringify({
+          changes,
+          pageVersion: bar.dataset.pageVersion,
+          pagePath: bar.dataset.pagePath
+        })
       });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || 'Unable to save');
@@ -165,7 +174,7 @@ def editable_matches(source):
     return [match for match in ELEMENT_RE.finditer(source) if "<" not in match.group("content")]
 
 
-def add_editor(source):
+def add_editor(source, page_path):
     matches = editable_matches(source)
     pieces = []
     cursor = 0
@@ -179,7 +188,19 @@ def add_editor(source):
     rendered = "".join(pieces)
     page_version = hashlib.sha256(source.encode("utf-8")).hexdigest()
     editor_assets = EDITOR_ASSETS.replace("__LOCAL_EDITOR_PAGE_VERSION__", page_version)
+    editor_assets = editor_assets.replace("__LOCAL_EDITOR_PAGE_PATH__", page_path)
     return rendered.replace("</body>", editor_assets + "\n</body>", 1)
+
+
+def canonical_page_path(request_path):
+    path = urlparse(request_path).path
+    if path in ("/", "/index.html"):
+        return "/"
+    if path in ("/about", "/about/", "/about/index.html"):
+        return "/about/"
+    if path in ("/how-we-work", "/how-we-work/", "/how-we-work/index.html"):
+        return "/how-we-work/"
+    return None
 
 
 def apply_changes(source, changes, trust_positions=False):
@@ -234,12 +255,16 @@ class LocalEditorHandler(SimpleHTTPRequestHandler):
         return self.client_address[0] in ("127.0.0.1", "::1") and host in ("127.0.0.1", "localhost")
 
     def do_GET(self):
-        path = urlparse(self.path).path
-        if path in ("/", "/index.html"):
+        page_path = canonical_page_path(self.path)
+        if page_path:
             if not self._is_local():
                 self.send_error(403, "This editor is available only on this computer.")
                 return
-            body = add_editor(INDEX.read_text(encoding="utf-8")).encode("utf-8")
+            page_file = EDITABLE_PAGES[page_path]
+            body = add_editor(
+                page_file.read_text(encoding="utf-8"),
+                page_path,
+            ).encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(body)))
@@ -260,16 +285,20 @@ class LocalEditorHandler(SimpleHTTPRequestHandler):
             payload = json.loads(self.rfile.read(length))
             changes = payload.get("changes", [])
             page_version = payload.get("pageVersion", "")
+            page_path = payload.get("pagePath", "")
             if not isinstance(changes, list) or not changes:
                 raise ValueError("There are no changes to save.")
-            source = INDEX.read_text(encoding="utf-8")
+            if page_path not in EDITABLE_PAGES:
+                raise ValueError("This page is not available in the visual editor.")
+            page_file = EDITABLE_PAGES[page_path]
+            source = page_file.read_text(encoding="utf-8")
             current_version = hashlib.sha256(source.encode("utf-8")).hexdigest()
             updated = apply_changes(
                 source,
                 changes,
                 trust_positions=(page_version == current_version),
             )
-            INDEX.write_text(updated, encoding="utf-8")
+            page_file.write_text(updated, encoding="utf-8")
             self._json(200, {"saved": len(changes)})
         except (ValueError, json.JSONDecodeError) as error:
             self._json(400, {"error": str(error)})
