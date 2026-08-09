@@ -438,7 +438,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       window.setTimeout(
         startDashboard,
-        3850
+        900
       );
 
     }

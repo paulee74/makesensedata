@@ -388,7 +388,7 @@ button{
 
   min-height:calc(100vh - 77px);
 
-  padding:76px 0 82px;
+  padding:68px 0 76px;
 
   display:flex;
   align-items:center;
@@ -435,10 +435,10 @@ button{
   z-index:1;
 
   display:grid;
-  grid-template-columns:minmax(0,.92fr) minmax(560px,1.08fr);
+  grid-template-columns:minmax(420px,.82fr) minmax(600px,1.18fr);
   align-items:center;
 
-  gap:clamp(42px,5vw,76px);
+  gap:clamp(36px,4vw,64px);
 }
 
 .hero-copy{
@@ -446,14 +446,14 @@ button{
 }
 
 .hero-title{
-  max-width:760px;
+  max-width:720px;
 
   margin:0 0 28px;
 
   color:var(--navy);
 
-  font-size:clamp(3.1rem,5.2vw,5.6rem);
-  line-height:.96;
+  font-size:clamp(3rem,4.45vw,5rem);
+  line-height:.98;
   letter-spacing:-.06em;
 }
 
@@ -512,7 +512,7 @@ body.hero-ready .hero-accent-teal{
     heroAccentIn
     .8s
     cubic-bezier(.22,1,.36,1)
-    1.35s
+    .62s
     forwards;
 }
 
@@ -521,7 +521,7 @@ body.hero-ready .hero-accent-coral{
     heroAccentIn
     .8s
     cubic-bezier(.22,1,.36,1)
-    2.05s
+    .88s
     forwards;
 }
 
@@ -530,7 +530,7 @@ body.hero-ready .hero-accent-coral::after{
     underline
     .7s
     cubic-bezier(.22,1,.36,1)
-    2.65s
+    1.2s
     forwards;
 }
 
@@ -652,31 +652,31 @@ body.hero-ready .hero-accent-coral::after{
 }
 
 body.hero-ready .hero .eyebrow{
-  animation:rise .75s cubic-bezier(.22,1,.36,1) .15s forwards;
+  animation:rise .65s cubic-bezier(.22,1,.36,1) .05s forwards;
 }
 
 body.hero-ready .hero-line-one{
-  animation:rise .9s cubic-bezier(.22,1,.36,1) .5s forwards;
+  animation:rise .72s cubic-bezier(.22,1,.36,1) .2s forwards;
 }
 
 body.hero-ready .hero-line-two{
-  animation:rise .9s cubic-bezier(.22,1,.36,1) 1.05s forwards;
+  animation:rise .72s cubic-bezier(.22,1,.36,1) .4s forwards;
 }
 
 body.hero-ready .hero-line-three{
-  animation:rise 1s cubic-bezier(.22,1,.36,1) 1.85s forwards;
+  animation:rise .78s cubic-bezier(.22,1,.36,1) .62s forwards;
 }
 
 body.hero-ready .hero .lead{
-  animation:rise .75s cubic-bezier(.22,1,.36,1) 2.75s forwards;
+  animation:rise .7s cubic-bezier(.22,1,.36,1) .92s forwards;
 }
 
 body.hero-ready .hero-actions{
-  animation:rise .7s cubic-bezier(.22,1,.36,1) 3.1s forwards;
+  animation:rise .65s cubic-bezier(.22,1,.36,1) 1.08s forwards;
 }
 
 body.hero-ready .capabilities{
-  animation:rise .7s cubic-bezier(.22,1,.36,1) 3.45s forwards;
+  animation:rise .65s cubic-bezier(.22,1,.36,1) 1.2s forwards;
 }
 
 body.hero-ready .align-char{
@@ -714,8 +714,8 @@ body.hero-ready .data-word::after{
    ========================================================= */
 
 .hero-dashboard{
-  width:calc(100% + 7%);
-  margin-right:-7%;
+  width:calc(100% + 5%);
+  margin-right:-5%;
 
   opacity:0;
   filter:blur(8px);
@@ -732,7 +732,7 @@ body.hero-ready .hero-dashboard{
     dashIn
     1.1s
     cubic-bezier(.22,1,.36,1)
-    3.95s
+    .42s
     forwards;
 }
 
