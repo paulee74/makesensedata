@@ -481,6 +481,14 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
+      const menuItems =
+        Array.from(
+          browser.querySelectorAll(
+            "[data-case-menu]"
+          )
+        );
+
+
       const prevButton =
         browser.querySelector(
           "[data-case-browser-prev]"
@@ -494,6 +502,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
       let currentIndex = 0;
+      let rotationTimer;
+      const rotationDelay = 2000;
+
+
+      function stopRotation() {
+        window.clearInterval(rotationTimer);
+      }
+
+
+      function startRotation() {
+        stopRotation();
+
+        if (reduceMotion || cards.length < 2) {
+          return;
+        }
+
+        rotationTimer = window.setInterval(
+          () => {
+            selectCase(currentIndex + 1, false);
+          },
+          rotationDelay
+        );
+      }
 
 
       /* -------------------------------------------------------
@@ -594,6 +625,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
+          }
+        );
+
+
+        menuItems.forEach(
+          (item, itemIndex) => {
+            const active =
+              itemIndex === currentIndex;
+
+            item.classList.toggle(
+              "is-active",
+              active
+            );
+
+            item.setAttribute(
+              "aria-pressed",
+              active ? "true" : "false"
+            );
           }
         );
 
@@ -702,6 +751,22 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
 
+      menuItems.forEach((item) => {
+        item.addEventListener(
+          "click",
+          () => {
+            const index =
+              Number(item.dataset.caseMenu);
+
+            if (!Number.isNaN(index)) {
+              selectCase(index, false);
+              startRotation();
+            }
+          }
+        );
+      });
+
+
       /* -------------------------------------------------------
          ARROWS
          ------------------------------------------------------- */
@@ -728,134 +793,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
       );
-
-      /* =====================================================
-   CASE STUDY MOBILE AUTO CAROUSEL
-   ===================================================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const cards = document.querySelectorAll(".case-browser-card");
-  const copies = document.querySelectorAll(".case-browser-copy");
-  const dots = document.querySelectorAll("[data-case-browser-dot]");
-
-  if (!cards.length) return;
-
-
-  let currentCase = 0;
-  let timer;
-
-
-  function showCase(index){
-
-    currentCase = index;
-
-
-    cards.forEach((card,i)=>{
-
-      card.classList.toggle(
-        "is-active",
-        i === index
-      );
-
-      card.setAttribute(
-        "aria-pressed",
-        i === index ? "true" : "false"
-      );
-
-    });
-
-
-    copies.forEach((copy,i)=>{
-
-      copy.classList.toggle(
-        "is-active",
-        i === index
-      );
-
-    });
-
-
-    dots.forEach((dot,i)=>{
-
-      dot.classList.toggle(
-        "is-active",
-        i === index
-      );
-
-    });
-
-  }
-
-
-
-  function nextCase(){
-
-    let next = currentCase + 1;
-
-    if(next >= cards.length){
-      next = 0;
-    }
-
-    showCase(next);
-
-  }
-
-
-
-  function startCarousel(){
-
-    clearInterval(timer);
-
-    timer = setInterval(()=>{
-
-      if(window.innerWidth <= 820){
-        nextCase();
-      }
-
-    },4000);
-
-  }
-
-
-
-  cards.forEach((card,index)=>{
-
-    card.addEventListener(
-      "click",
-      ()=>{
-
-        showCase(index);
-        startCarousel();
-
-      }
-    );
-
-  });
-
-
-
-  dots.forEach((dot,index)=>{
-
-    dot.addEventListener(
-      "click",
-      ()=>{
-
-        showCase(index);
-        startCarousel();
-
-      }
-    );
-
-  });
-
-
-
-  startCarousel();
-
-
-});
-
 
       /* -------------------------------------------------------
          KEYBOARD NAVIGATION
@@ -919,6 +856,21 @@ document.addEventListener("DOMContentLoaded", () => {
         0,
         false
       );
+
+
+      document.addEventListener(
+        "visibilitychange",
+        () => {
+          if (document.hidden) {
+            stopRotation();
+          }
+          else {
+            startRotation();
+          }
+        }
+      );
+
+      startRotation();
 
     });
 

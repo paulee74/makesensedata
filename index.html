@@ -57,7 +57,7 @@
   </script>
 
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/app.js" defer></script>
+  <script src="js/app.js?v=20260809-2" defer></script>
 
 </head>
 
@@ -905,7 +905,51 @@
 
 
           <div class="case-browser-feature">
-            <div class="case-browser-cards mobile-carousel"></div>
+
+            <div class="case-browser-menu" aria-label="Choose a case study">
+
+              <button
+                class="is-active"
+                type="button"
+                data-case-menu="0"
+                aria-pressed="true"
+              >
+                <span>01</span>
+                <strong>Workforce</strong>
+                <small>Gender pay and workforce analysis</small>
+              </button>
+
+              <button
+                type="button"
+                data-case-menu="1"
+                aria-pressed="false"
+              >
+                <span>02</span>
+                <strong>Finance</strong>
+                <small>Executive financial overview</small>
+              </button>
+
+              <button
+                type="button"
+                data-case-menu="2"
+                aria-pressed="false"
+              >
+                <span>03</span>
+                <strong>Customer operations</strong>
+                <small>Service and operational performance</small>
+              </button>
+
+              <button
+                type="button"
+                data-case-menu="3"
+                aria-pressed="false"
+              >
+                <span>04</span>
+                <strong>Healthcare</strong>
+                <small>Emergency department analytics</small>
+              </button>
+
+            </div>
 
 
             <!-- GENDER PAY -->

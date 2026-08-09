@@ -251,6 +251,10 @@ class LocalEditorHandler(SimpleHTTPRequestHandler):
         host = self.headers.get("Host", "").split(":", 1)[0].lower()
         return self.client_address[0] in ("127.0.0.1", "::1") and host in ("127.0.0.1", "localhost")
 
+    def end_headers(self):
+        self.send_header("Cache-Control", "no-store")
+        super().end_headers()
+
     def do_GET(self):
         page_path = canonical_page_path(self.path)
         if page_path:
