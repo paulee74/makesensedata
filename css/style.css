@@ -159,10 +159,10 @@ button{
 
 /* Keep the About page's section labels visually consistent. */
 .about-page main .eyebrow{
-  width:230px;
+  width:max-content;
   max-width:100%;
-  min-height:42px;
-  padding:0 18px;
+  min-height:38px;
+  padding:0 16px;
 
   display:inline-flex;
   align-items:center;
@@ -171,6 +171,7 @@ button{
   box-sizing:border-box;
   line-height:1.2;
   text-align:center;
+  white-space:nowrap;
 }
 
 .button{
