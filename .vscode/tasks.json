@@ -17,6 +17,21 @@
       }
     },
     {
+      "label": "Edit Make Sense Data Visually",
+      "type": "shell",
+      "command": "python3 tools/local_visual_editor.py",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
       "label": "Publish Make Sense Data",
       "type": "shell",
       "command": "git add -A && (git diff --cached --quiet || git commit -m \"${input:commitMessage}\") && git push origin main && git push bluehost main",
