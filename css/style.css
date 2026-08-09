@@ -3781,6 +3781,18 @@ body.dashboard-active .source-cloud span:nth-child(5){
   background:#fff;
 }
 
+.trail-monkey-link{
+  color:var(--teal-dark);
+  font-weight:750;
+  text-decoration-thickness:1.5px;
+  text-underline-offset:.18em;
+}
+
+.trail-monkey-link:hover,
+.trail-monkey-link:focus-visible{
+  color:var(--navy);
+}
+
 
 /* =========================================================
    LEGACY ABOUT SUPPORT
