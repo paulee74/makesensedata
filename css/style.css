@@ -1528,6 +1528,112 @@ body.dashboard-active .source-cloud span:nth-child(5){
 }
 
 
+/* LIGHTER HERO DASHBOARD */
+
+.dashboard-shell{
+  color:var(--navy);
+  border-color:rgba(12,38,56,.10);
+  background:
+    radial-gradient(
+      circle at 88% 8%,
+      rgba(33,184,158,.16),
+      transparent 30%
+    ),
+    linear-gradient(145deg,#f7fbfa,#e8f5f2);
+  box-shadow:
+    0 24px 60px rgba(12,38,56,.14),
+    0 8px 20px rgba(33,184,158,.07);
+}
+
+.dashboard-shell::before{
+  border-color:rgba(12,38,56,.06);
+}
+
+.dashboard-toolbar small{
+  color:var(--muted);
+}
+
+.dashboard-toolbar strong{
+  color:var(--navy);
+}
+
+.live-status{
+  border-color:rgba(20,117,119,.14);
+  color:var(--teal-dark);
+  background:rgba(33,184,158,.10);
+}
+
+.dashboard-shell .kpi-card,
+.dashboard-shell .chart-panel,
+.dashboard-shell .donut-panel,
+.dashboard-shell .quality-panel{
+  border-color:rgba(12,38,56,.09);
+  background:rgba(255,255,255,.78);
+  box-shadow:0 8px 22px rgba(12,38,56,.05);
+}
+
+.dashboard-shell .kpi-card > span,
+.dashboard-shell .panel-heading span{
+  color:var(--muted);
+}
+
+.dashboard-shell .kpi-card > strong,
+.dashboard-shell .kpi-card .metric-number,
+.dashboard-shell .kpi-card .metric-verify,
+.dashboard-shell .kpi-card .metric-words,
+.dashboard-shell .panel-heading strong,
+.dashboard-shell .principles-panel > div strong{
+  color:var(--navy);
+}
+
+.dashboard-shell .kpi-card > small{
+  color:var(--teal-dark);
+}
+
+.dashboard-shell .panel-pill{
+  border-color:rgba(20,117,119,.16);
+  color:var(--teal-dark);
+  background:var(--teal-soft);
+}
+
+.dashboard-shell .grid-lines line{
+  stroke:rgba(12,38,56,.09);
+}
+
+.dashboard-shell .chart-dots circle{
+  fill:#f7fbfa;
+}
+
+.dashboard-shell .chart-labels,
+.dashboard-shell .process-labels span:nth-child(1){
+  color:var(--muted);
+}
+
+.dashboard-shell .source-cloud span{
+  border-color:rgba(12,38,56,.10);
+  color:#536672;
+  background:rgba(255,255,255,.84);
+}
+
+.dashboard-shell .donut::before{
+  background:#f7fbfa;
+}
+
+.dashboard-shell .donut strong{
+  color:var(--navy);
+}
+
+.dashboard-shell .donut span,
+.dashboard-shell .legend,
+.dashboard-shell .principle-list{
+  color:var(--muted);
+}
+
+.dashboard-shell .principle-list li::before{
+  box-shadow:0 0 0 4px rgba(12,38,56,.04);
+}
+
+
 /* =========================================================
    SIGNAL STRIP
    ========================================================= */
