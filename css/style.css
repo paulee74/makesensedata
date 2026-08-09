@@ -2852,6 +2852,110 @@ body.dashboard-active .source-cloud span:nth-child(5){
   margin-bottom:32px;
 }
 
+.report-guide{
+  margin:0 0 28px;
+  padding:26px;
+
+  overflow:hidden;
+
+  border-radius:20px;
+
+  color:var(--white);
+  background:
+    radial-gradient(
+      circle at 92% 10%,
+      rgba(33,184,158,.20),
+      transparent 30%
+    ),
+    linear-gradient(135deg,#0b2a3c,#104451);
+}
+
+.report-guide-title{
+  margin:0 0 22px;
+
+  color:#82e5d3;
+
+  font-size:.75rem;
+  font-weight:900;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.report-guide ol{
+  position:relative;
+
+  margin:0;
+  padding:0;
+
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+
+  gap:18px;
+
+  list-style:none;
+}
+
+.report-guide ol::before{
+  content:"";
+
+  position:absolute;
+
+  top:18px;
+  left:22px;
+  right:22px;
+
+  height:1px;
+
+  background:rgba(130,229,211,.24);
+}
+
+.report-guide li{
+  position:relative;
+  z-index:1;
+
+  min-width:0;
+}
+
+.report-guide li > span{
+  width:36px;
+  height:36px;
+
+  display:grid;
+  place-items:center;
+
+  margin-bottom:16px;
+
+  border:1px solid rgba(130,229,211,.38);
+  border-radius:50%;
+
+  color:var(--navy);
+  background:#82e5d3;
+
+  font-size:.67rem;
+  font-weight:900;
+  letter-spacing:.06em;
+}
+
+.report-guide strong{
+  display:block;
+
+  margin-bottom:7px;
+
+  color:var(--white);
+
+  font-size:.96rem;
+  line-height:1.25;
+}
+
+.report-guide li p{
+  margin:0;
+
+  color:rgba(255,255,255,.66);
+
+  font-size:.82rem;
+  line-height:1.55;
+}
+
 .powerbi-embed{
   position:relative;
 
@@ -4636,6 +4740,15 @@ body.dashboard-active .source-cloud span:nth-child(5){
     min-height:0;
   }
 
+  .report-guide ol{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    row-gap:26px;
+  }
+
+  .report-guide ol::before{
+    display:none;
+  }
+
 }
 
 
@@ -4857,6 +4970,24 @@ body.dashboard-active .source-cloud span:nth-child(5){
 
   .capability-grid{
     grid-template-columns:1fr;
+  }
+
+  .report-guide{
+    padding:22px;
+  }
+
+  .report-guide ol{
+    grid-template-columns:1fr;
+  }
+
+  .report-guide li{
+    display:grid;
+    grid-template-columns:36px minmax(0,1fr);
+    gap:14px;
+  }
+
+  .report-guide li > span{
+    margin:0;
   }
 
   .powerbi-embed{
