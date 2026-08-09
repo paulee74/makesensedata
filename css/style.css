@@ -157,6 +157,22 @@ button{
   background:rgba(33,184,158,.12);
 }
 
+/* Keep the About page's section labels visually consistent. */
+.about-page main .eyebrow{
+  width:230px;
+  max-width:100%;
+  min-height:42px;
+  padding:0 18px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  box-sizing:border-box;
+  line-height:1.2;
+  text-align:center;
+}
+
 .button{
   min-height:52px;
   padding:0 25px;
