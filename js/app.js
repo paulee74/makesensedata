@@ -68,6 +68,13 @@ document.addEventListener("DOMContentLoaded", () => {
           String(isOpen)
         );
 
+        menuToggle.setAttribute(
+          "aria-label",
+          isOpen
+            ? "Close navigation"
+            : "Open navigation"
+        );
+
       }
     );
 

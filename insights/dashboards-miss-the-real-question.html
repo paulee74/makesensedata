@@ -13,7 +13,8 @@
   >
 
   <link rel="canonical" href="https://makesensedata.je/insights/dashboards-miss-the-real-question.html">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style.css?v=20260810-1">
+  <script src="../js/app.js?v=20260810-1" defer></script>
 </head>
 
 <body>
@@ -28,11 +29,22 @@
       <span>Make Sense Data</span>
     </a>
 
-    <nav class="main-nav">
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="main-nav"
+      aria-label="Open navigation"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="main-nav" id="main-nav" aria-label="Main navigation">
       <a href="../index.html#services">Services</a>
       <a href="../index.html#work">Work</a>
       <a href="../index.html#insights">Insights</a>
-      <a href="../about/">About</a>
+      <a class="nav-about" href="../about/">About Paul</a>
       <a class="nav-cta" href="../index.html#contact">Let's talk</a>
     </nav>
 
