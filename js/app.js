@@ -435,7 +435,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    if (reduceMotion) {
+    if (
+      reduceMotion ||
+      !("IntersectionObserver" in window)
+    ) {
 
       startDashboard();
 
@@ -443,10 +446,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     else {
 
-      window.setTimeout(
-        startDashboard,
-        900
-      );
+      const dashboardObserver =
+        new IntersectionObserver(
+          (entries, observer) => {
+
+            if (entries.some(
+              (entry) => entry.isIntersecting
+            )) {
+
+              startDashboard();
+              observer.disconnect();
+
+            }
+
+          },
+          {
+            threshold:.18,
+            rootMargin:"0px 0px -8%"
+          }
+        );
+
+      dashboardObserver.observe(dashboard);
 
     }
 
