@@ -1,6 +1,6 @@
 ---
 deployment:
   tasks:
-    - /bin/rsync -rltv --delete --no-perms --no-owner --no-group --exclude='.git' --exclude='.github' --exclude='.vscode' --exclude='.DS_Store' --exclude='.cpanel.yml' --exclude='README.txt' --exclude='MakeSenseData.code-workspace' --exclude='Archive' --exclude='.htaccess' /home1/wsbiadmy/repositories/makesensedata/ /home1/wsbiadmy/public_html/website_b8322a24/
+    - /bin/rsync -rltv --delete --no-perms --no-owner --no-group --exclude='.git' --exclude='.github' --exclude='.vscode' --exclude='.DS_Store' --exclude='.cpanel.yml' --exclude='README.txt' --exclude='MakeSenseData.code-workspace' --exclude='Archive' --exclude='.htaccess' --exclude='/analytics/' /home1/wsbiadmy/repositories/makesensedata/ /home1/wsbiadmy/public_html/website_b8322a24/
     - /usr/bin/find /home1/wsbiadmy/public_html/website_b8322a24 -type d -exec /bin/chmod 755 {} \;
     - /usr/bin/find /home1/wsbiadmy/public_html/website_b8322a24 -type f -exec /bin/chmod 644 {} \;
