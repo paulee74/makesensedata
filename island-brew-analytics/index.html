@@ -1,0 +1,824 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Retail &amp; Hospitality Analytics Jersey | Make Sense Data</title>
+
+  <meta
+    name="description"
+    content="Explore a practical Power BI example bringing sales, margins, labour, waste and targets together across a fictional multi-site Jersey coffee business."
+  >
+
+  <meta name="robots" content="index, follow">
+
+  <link
+    rel="canonical"
+    href="https://www.makesensedata.je/island-brew-analytics/"
+  >
+
+  <meta
+    property="og:title"
+    content="Retail & Hospitality Analytics | Make Sense Data"
+  >
+
+  <meta
+    property="og:description"
+    content="A practical example of multi-site reporting bringing sales, margins, labour, waste and targets together in one management view."
+  >
+
+  <meta
+    property="og:url"
+    content="https://www.makesensedata.je/island-brew-analytics/"
+  >
+
+  <meta property="og:type" content="website">
+
+  <link
+    rel="stylesheet"
+    href="../css/style.css?v=20260813-1"
+  >
+
+  <script
+    src="../js/app.js?v=20260813-1"
+    defer
+  ></script>
+
+</head>
+
+
+<body>
+
+  <!-- ==================================================
+       HEADER
+       ================================================== -->
+
+  <header class="site-header">
+
+    <div class="container nav-wrap">
+
+      <a
+        class="brand"
+        href="../"
+        aria-label="Make Sense Data home"
+      >
+
+        <span
+          class="brand-mark"
+          aria-hidden="true"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+
+        <span>
+          Make Sense Data Jersey 🇯🇪
+        </span>
+
+      </a>
+
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="main-nav"
+        aria-label="Open navigation"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+
+      <nav
+        class="main-nav"
+        id="main-nav"
+        aria-label="Main navigation"
+      >
+
+        <a href="../#services">
+          How I help
+        </a>
+
+        <a href="../#work">
+          Case Studies
+        </a>
+
+        <a
+          class="nav-about"
+          href="../about/"
+        >
+          About Paul
+        </a>
+
+        <a
+          class="nav-cta"
+          href="../#contact"
+        >
+          Let’s talk
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <main>
+
+
+    <!-- ==================================================
+         CASE STUDY HERO
+         ================================================== -->
+
+    <section class="case-study-hero">
+
+      <div class="case-study-inner">
+
+        <p class="eyebrow">
+          Retail &amp; hospitality analytics
+        </p>
+
+
+        <h1>
+          Understand what is driving performance across every location.
+        </h1>
+
+
+        <p>
+          Island Brew is a fictional multi-site Jersey coffee business.
+          This example brings sales, margins, targets, labour and waste
+          together so managers can compare locations and understand the
+          factors behind performance.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         THE CHALLENGE
+         ================================================== -->
+
+    <section class="case-study-overview">
+
+      <div class="case-study-inner">
+
+        <div class="case-study-grid">
+
+
+          <div>
+
+            <p class="eyebrow">
+              The challenge
+            </p>
+
+            <h2>
+              Sales alone do not tell the whole story.
+            </h2>
+
+          </div>
+
+
+          <div>
+
+            <p>
+              A busy location can generate strong revenue while still
+              performing less efficiently because of higher labour costs,
+              lower margins or greater waste.
+            </p>
+
+            <p>
+              Equally, a smaller location may generate less revenue but
+              operate efficiently and contribute strong margins.
+            </p>
+
+            <p>
+              Looking at sales, staffing, product performance and waste
+              separately makes those differences difficult to understand.
+              Bringing them together creates a more useful management view.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         WHAT THE REPORT ANSWERS
+         ================================================== -->
+
+    <section class="case-study-overview alt">
+
+      <div class="case-study-inner">
+
+        <div class="case-study-grid">
+
+
+          <div>
+
+            <p class="eyebrow">
+              The questions
+            </p>
+
+            <h2>
+              Move from what happened to why it happened.
+            </h2>
+
+          </div>
+
+
+          <div>
+
+            <ul>
+
+              <li>
+                Which locations are generating the strongest sales?
+              </li>
+
+              <li>
+                Are stores meeting their sales targets?
+              </li>
+
+              <li>
+                Which locations produce the strongest gross margins?
+              </li>
+
+              <li>
+                How efficiently is labour being used?
+              </li>
+
+              <li>
+                Where is waste having the greatest impact?
+              </li>
+
+              <li>
+                Which product categories are driving revenue?
+              </li>
+
+              <li>
+                How does performance change by month, day of week or location?
+              </li>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         POWER BI DASHBOARD
+         ================================================== -->
+
+    <section class="dashboard-section">
+
+      <div class="case-study-inner">
+
+
+        <div class="dashboard-heading">
+
+          <p class="eyebrow">
+            Interactive example
+          </p>
+
+          <h2>
+            Explore the Island Brew report.
+          </h2>
+
+          <p>
+            Use the filters and visuals to compare locations, periods and
+            different aspects of commercial and operational performance.
+          </p>
+
+        </div>
+
+
+        <div class="report-guide">
+
+          <p class="report-guide-title">
+            A simple way to explore the report
+          </p>
+
+          <ol>
+
+            <li>
+
+              <span>01</span>
+
+              <div>
+
+                <strong>
+                  Start with the headline measures
+                </strong>
+
+                <p>
+                  Review sales, margin, transactions, average basket,
+                  labour and waste.
+                </p>
+
+              </div>
+
+            </li>
+
+
+            <li>
+
+              <span>02</span>
+
+              <div>
+
+                <strong>
+                  Compare actuals with target
+                </strong>
+
+                <p>
+                  See how performance changes over time and whether
+                  sales expectations are being met.
+                </p>
+
+              </div>
+
+            </li>
+
+
+            <li>
+
+              <span>03</span>
+
+              <div>
+
+                <strong>
+                  Look across locations
+                </strong>
+
+                <p>
+                  Compare stores using the same commercial and
+                  efficiency measures.
+                </p>
+
+              </div>
+
+            </li>
+
+
+            <li>
+
+              <span>04</span>
+
+              <div>
+
+                <strong>
+                  Investigate the difference
+                </strong>
+
+                <p>
+                  Use product mix, labour and waste to understand
+                  what may be driving performance.
+                </p>
+
+              </div>
+
+            </li>
+
+          </ol>
+
+        </div>
+
+
+        <div class="powerbi-embed">
+
+          <iframe
+            title="Island Brew Jersey Coffee Report"
+            src="https://app.powerbi.com/view?r=eyJrIjoiM2M2NTI5YjYtMzUyMS00MDJhLThkMTgtMGI4MGFmYmM5ZGE2IiwidCI6ImU4N2ZhOWQ1LWRmNWQtNGFiZS04ZDQxLTRlYjRhYzBlNmViZCJ9"
+            frameborder="0"
+            allowfullscreen="true"
+          ></iframe>
+
+        </div>
+
+
+        <p class="demo-note">
+          This demonstration uses synthetic data and a fictional organisation.
+          No real customer, employee or commercial information is shown.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         WHAT HAS BEEN BROUGHT TOGETHER
+         ================================================== -->
+
+    <section class="case-study-build">
+
+      <div class="case-study-inner">
+
+        <p class="eyebrow">
+          Bringing the information together
+        </p>
+
+        <h2>
+          One model, several parts of the business.
+        </h2>
+
+        <p class="about-process-intro">
+          The value comes from connecting information that would otherwise
+          be viewed separately. Once the measures use consistent definitions,
+          managers can compare performance across locations with confidence.
+        </p>
+
+
+        <div class="capability-grid">
+
+
+          <article>
+
+            <span>
+              01
+            </span>
+
+            <h3>
+              Sales &amp; transactions
+            </h3>
+
+            <p>
+              Bring together net sales, transaction volumes and average
+              basket value to understand demand and commercial performance.
+            </p>
+
+          </article>
+
+
+          <article>
+
+            <span>
+              02
+            </span>
+
+            <h3>
+              Products &amp; margin
+            </h3>
+
+            <p>
+              Look beyond revenue to understand product mix and the gross
+              margin being generated by different parts of the business.
+            </p>
+
+          </article>
+
+
+          <article>
+
+            <span>
+              03
+            </span>
+
+            <h3>
+              Labour efficiency
+            </h3>
+
+            <p>
+              Compare labour as a percentage of sales and sales generated
+              per labour hour to understand operational efficiency.
+            </p>
+
+          </article>
+
+
+          <article>
+
+            <span>
+              04
+            </span>
+
+            <h3>
+              Waste &amp; targets
+            </h3>
+
+            <p>
+              Monitor waste alongside sales targets so operational costs
+              and commercial expectations are considered together.
+            </p>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         MULTI-SITE REPORTING
+         ================================================== -->
+
+    <section class="case-study-overview">
+
+      <div class="case-study-inner">
+
+        <div class="case-study-grid">
+
+
+          <div>
+
+            <p class="eyebrow">
+              Multi-site reporting
+            </p>
+
+            <h2>
+              Use the same measures everywhere.
+            </h2>
+
+          </div>
+
+
+          <div>
+
+            <p>
+              One of the difficulties in multi-site businesses is ensuring
+              that each location is being assessed in the same way.
+            </p>
+
+            <p>
+              A consistent reporting model creates common definitions for
+              measures such as sales, gross margin, labour efficiency and
+              waste. This makes comparisons between locations more meaningful.
+            </p>
+
+            <p>
+              Managers can still investigate individual stores, but they are
+              starting from one shared version of the information.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         FROM DATA TO MANAGEMENT INFORMATION
+         ================================================== -->
+
+    <section class="case-study-build">
+
+      <div class="case-study-inner">
+
+        <p class="eyebrow">
+          The wider opportunity
+        </p>
+
+        <h2>
+          The dashboard is the end of the process, not the beginning.
+        </h2>
+
+        <p class="about-process-intro">
+          Useful reporting starts by understanding where the information
+          comes from, how it should fit together and which measures the
+          business genuinely needs.
+        </p>
+
+
+        <div class="capability-grid">
+
+
+          <article>
+
+            <span>
+              SOURCE
+            </span>
+
+            <h3>
+              Operational systems
+            </h3>
+
+            <p>
+              Sales, product, staffing, purchasing or other operational
+              systems provide the underlying information.
+            </p>
+
+          </article>
+
+
+          <article>
+
+            <span>
+              PREPARE
+            </span>
+
+            <h3>
+              Clean &amp; combine
+            </h3>
+
+            <p>
+              Information is checked, structured and brought together so
+              common definitions can be applied consistently.
+            </p>
+
+          </article>
+
+
+          <article>
+
+            <span>
+              MODEL
+            </span>
+
+            <h3>
+              Create useful measures
+            </h3>
+
+            <p>
+              Sales, margin, labour efficiency, waste and targets are
+              calculated in a way that can be reused across the report.
+            </p>
+
+          </article>
+
+
+          <article>
+
+            <span>
+              USE
+            </span>
+
+            <h3>
+              Support decisions
+            </h3>
+
+            <p>
+              The resulting reporting gives managers something they can
+              explore regularly rather than rebuilding analysis each time.
+            </p>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         WHY THIS MATTERS
+         ================================================== -->
+
+    <section class="case-study-overview alt">
+
+      <div class="case-study-inner">
+
+        <div class="case-study-grid">
+
+
+          <div>
+
+            <p class="eyebrow">
+              The point
+            </p>
+
+            <h2>
+              Better questions become easier to answer.
+            </h2>
+
+          </div>
+
+
+          <div>
+
+            <p>
+              Instead of asking only how much a store sold, management can
+              look at the relationship between revenue, product mix, margin,
+              staffing and waste.
+            </p>
+
+            <p>
+              That makes it easier to identify where performance really
+              differs and where further investigation may be useful.
+            </p>
+
+            <p>
+              The same approach can be applied to many businesses with
+              multiple locations, teams, products or operational units.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         CTA
+         ================================================== -->
+
+    <section class="case-study-cta">
+
+      <div class="case-study-inner">
+
+        <div class="case-study-cta-panel">
+
+          <div>
+
+            <h2>
+              Have information across different systems or spreadsheets?
+            </h2>
+
+            <p>
+              We can start by looking at what you already have, what you need
+              to understand and how the information could be brought together
+              more effectively.
+            </p>
+
+          </div>
+
+
+          <a
+            class="button contact-button"
+            href="mailto:hello@makesensedata.je?subject=Retail%20and%20operations%20reporting"
+          >
+            Start a conversation
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- ==================================================
+       FOOTER
+       ================================================== -->
+
+  <footer class="site-footer">
+
+    <div class="container footer-wrap">
+
+      <a
+        class="brand footer-brand"
+        href="../"
+      >
+
+        <span
+          class="brand-mark"
+          aria-hidden="true"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+
+        <span>
+          Make Sense Data
+        </span>
+
+      </a>
+
+
+      <p>
+        Jersey, Channel Islands
+      </p>
+
+
+      <p>
+        © <span id="year"></span> Make Sense Data
+      </p>
+
+    </div>
+
+  </footer>
+
+
+</body>
+
+</html>
