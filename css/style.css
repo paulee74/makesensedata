@@ -258,7 +258,14 @@ button{
 .brand-logo {
   display: flex;
   align-items: center;
+  gap: 10px;
   text-decoration: none;
+}
+
+.brand-flag {
+  flex: 0 0 auto;
+  font-size: 1.35rem;
+  line-height: 1;
 }
 
 .site-logo {
@@ -268,10 +275,21 @@ button{
   max-width: 100%;
 }
 
+.footer-logo {
+  display: block;
+  width: auto;
+  height: 42px;
+  max-width: 100%;
+}
+
 @media (max-width: 700px) {
 
   .site-logo {
     height: 44px;
+  }
+
+  .footer-logo {
+    height: 36px;
   }
 
 }
@@ -314,34 +332,6 @@ button{
   font-weight:850;
   letter-spacing:-.035em;
 }
-
-.brand-mark{
-  width:38px;
-  height:38px;
-  padding:8px;
-
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  align-items:end;
-
-  gap:3px;
-
-  border-radius:12px;
-
-  background:var(--navy);
-
-  box-shadow:0 9px 22px rgba(12,38,56,.18);
-}
-
-.brand-mark span{
-  display:block;
-  border-radius:3px 3px 1px 1px;
-  background:var(--teal);
-}
-
-.brand-mark span:nth-child(1){height:48%}
-.brand-mark span:nth-child(2){height:74%}
-.brand-mark span:nth-child(3){height:100%}
 
 .main-nav{
   display:flex;
@@ -2776,12 +2766,6 @@ body.dashboard-active .source-cloud span:nth-child(5){
   font-size:.98rem;
 }
 
-.footer-brand .brand-mark{
-  width:33px;
-  height:33px;
-}
-
-
 /* =========================================================
    CASE STUDY PAGES
    ========================================================= */
@@ -3025,6 +3009,20 @@ body.dashboard-active .source-cloud span:nth-child(5){
   height:100%;
 
   border:0;
+}
+
+.powerbi-watermark{
+  position:absolute;
+  right:clamp(14px, 2.2vw, 30px);
+  bottom:clamp(14px, 2.2vw, 30px);
+  z-index:2;
+
+  width:clamp(130px, 18vw, 230px);
+  height:auto;
+
+  opacity:.20;
+  pointer-events:none;
+  user-select:none;
 }
 
 .demo-note{
