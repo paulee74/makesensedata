@@ -3014,13 +3014,14 @@ body.dashboard-active .source-cloud span:nth-child(5){
 .powerbi-watermark{
   position:absolute;
   right:clamp(14px, 2.2vw, 30px);
-  bottom:clamp(14px, 2.2vw, 30px);
+  top:clamp(14px, 2.2vw, 30px);
   z-index:2;
 
   width:clamp(130px, 18vw, 230px);
   height:auto;
 
-  opacity:.20;
+  opacity:.42;
+  filter:drop-shadow(0 1px 4px rgba(255,255,255,.9));
   pointer-events:none;
   user-select:none;
 }
