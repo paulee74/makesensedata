@@ -498,6 +498,12 @@ document.addEventListener("DOMContentLoaded", () => {
             "[data-case-copy]"
           )
         );
+        const totalCases = cards.length;
+
+console.log(
+  `Make Sense Data case studies loaded: ${totalCases}`
+);
+        
 
 
       const dots =

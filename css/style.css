@@ -5473,9 +5473,55 @@ body.dashboard-active .source-cloud span:nth-child(5){
   font-size:.95rem;
 }
 
-.case-browser-arrow,
+/* =========================================================
+   CASE BROWSER DOT NAVIGATION
+   ========================================================= */
+
 .case-browser-dots{
-  display:none;
+  position:absolute;
+  left:50%;
+  bottom:28px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:8px;
+
+  transform:translateX(-50%);
+
+  z-index:10;
+}
+
+.case-browser-dots button{
+  width:9px;
+  height:9px;
+
+  padding:0;
+
+  border:0;
+  border-radius:999px;
+
+  background:rgba(12,38,56,.22);
+
+  cursor:pointer;
+
+  transition:
+    width .25s ease,
+    background .25s ease,
+    transform .25s ease;
+}
+
+.case-browser-dots button:hover{
+  transform:scale(1.15);
+  background:rgba(33,184,158,.6);
+}
+
+.case-browser-dots button.is-active{
+  width:26px;
+
+  background:var(--teal);
 }
 
 @media(max-width:900px){
@@ -6187,4 +6233,87 @@ body.dashboard-active .source-cloud span:nth-child(5){
     line-height:1.25;
     white-space:normal;
   }
+  /* ==================================================
+   CASE BROWSER - SIXTH CASE SUPPORT
+   ================================================== */
+
+/* Carousel dots */
+
+.case-browser-dots{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  margin-top:24px;
+}
+
+
+.case-browser-dots button{
+  width:10px;
+  height:10px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:rgba(31,42,68,.25);
+  cursor:pointer;
+  transition:all .25s ease;
+}
+
+
+.case-browser-dots button:hover{
+  transform:scale(1.15);
+}
+
+
+.case-browser-dots button.is-active{
+  width:28px;
+  border-radius:20px;
+  background:#27C5A7;
+}
+
+
+/* Ensure all six cards can participate */
+
+.case-browser-card{
+  display:none;
+}
+
+
+.case-browser-card.is-active{
+  display:block;
+}
+
+
+/* Ensure all six copy panels behave correctly */
+
+.case-browser-copy{
+  display:none;
+}
+
+
+.case-browser-copy.is-active{
+  display:block;
+}
+
+
+/* Mobile spacing adjustment */
+
+@media(max-width:700px){
+
+  .case-browser-dots{
+    gap:8px;
+  }
+
+
+  .case-browser-dots button{
+    width:9px;
+    height:9px;
+  }
+
+
+  .case-browser-dots button.is-active{
+    width:22px;
+  }
+
+}
 }
