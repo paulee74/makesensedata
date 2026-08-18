@@ -6233,11 +6233,13 @@ body.dashboard-active .source-cloud span:nth-child(5){
     line-height:1.25;
     white-space:normal;
   }
-  /* ==================================================
+
+} /* CLOSE max-width:600px HERE */
+
+
+/* ==================================================
    CASE BROWSER - SIXTH CASE SUPPORT
    ================================================== */
-
-/* Carousel dots */
 
 .case-browser-dots{
   display:flex;
@@ -6316,4 +6318,707 @@ body.dashboard-active .source-cloud span:nth-child(5){
   }
 
 }
+
+/* =========================================================
+   HOMEPAGE CONTENT VISIBILITY SAFETY FIX
+   18 AUGUST 2026
+   ========================================================= */
+
+
+/* Standard reveal content */
+
+.reveal,
+.reveal.visible{
+  opacity:1 !important;
+  transform:none !important;
+}
+
+
+/* New homepage hero */
+
+.hero .hero-positioning,
+.hero .hero-location,
+.hero .lead,
+.hero-actions,
+.hero .capabilities{
+  opacity:1 !important;
+  visibility:visible !important;
+  filter:none !important;
+  transform:none !important;
+}
+
+
+/* Coloured words in the new hero */
+
+
+
+/* Dashboard container */
+
+.hero-dashboard{
+  opacity:1 !important;
+  visibility:visible !important;
+  filter:none !important;
+  transform:none !important;
+}
+
+
+/* Dashboard component entrance states */
+
+.hero-dashboard .kpi-card,
+.hero-dashboard .chart-panel,
+.hero-dashboard .donut-panel,
+.hero-dashboard .quality-panel{
+  opacity:1 !important;
+  visibility:visible !important;
+  transform:none !important;
+}
+
+
+/* New hierarchy elements */
+
+.hero-positioning,
+.hero-brand-statement,
+.hero-location,
+.why-title,
+.why-statement,
+.section-title,
+.section-statement,
+.section-description{
+  visibility:visible !important;
+}
+
+
+/* =========================================================
+   NEW HERO HIERARCHY
+   ========================================================= */
+
+.hero-positioning{
+  max-width:900px;
+
+  margin:0 0 25px;
+
+  color:var(--navy);
+
+  font-size:clamp(3rem,4.45vw,5rem);
+  line-height:.92;
+
+  font-weight:850;
+  letter-spacing:-.065em;
+}
+
+
+
+
+.hero-positioning .hero-line{
+  display:inline;
+}
+
+
+.hero-separator{
+  display:inline-block;
+
+  margin:0 .08em;
+
+  color:var(--teal);
+
+  font-size:.7em;
+}
+
+
+.hero-brand-statement{
+  max-width:690px;
+
+  margin:0 0 24px;
+
+  color:var(--navy);
+
+  font-size:clamp(1.9rem,2.75vw,3rem);
+  line-height:1.04;
+
+  font-weight:750;
+  letter-spacing:-.045em;
+}
+
+
+.hero-location{
+  position:relative;
+
+  max-width:660px;
+
+  margin:18px 0 0;
+  padding-left:18px;
+
+  color:var(--muted);
+
+  font-size:.92rem;
+  line-height:1.55;
+}
+
+
+.hero-location::before{
+  content:"";
+
+  position:absolute;
+
+  top:.58em;
+  left:0;
+
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:var(--teal);
+}
+
+
+/* =========================================================
+   WHY BUSINESSES GET IN TOUCH — NEW HIERARCHY
+   ========================================================= */
+
+.why-heading .why-title{
+  max-width:820px;
+
+  margin:0;
+
+  color:var(--navy);
+
+  font-size:clamp(3.4rem,5.4vw,5.8rem);
+  line-height:.94;
+
+  font-weight:850;
+  letter-spacing:-.055em;
+}
+
+
+.why-heading .why-statement{
+  max-width:760px;
+
+  margin:24px 0 0;
+
+  color:var(--navy);
+
+  font-size:clamp(1.55rem,2.4vw,2.6rem);
+  line-height:1.12;
+
+  font-weight:700;
+  letter-spacing:-.035em;
+}
+
+
+/* =========================================================
+   HOW I HELP — NEW HIERARCHY
+   ========================================================= */
+
+.services-section .section-title{
+  max-width:820px;
+
+  margin:0;
+
+  color:var(--navy);
+
+  font-size:clamp(3.4rem,5.2vw,5.7rem);
+  line-height:.94;
+
+  font-weight:850;
+  letter-spacing:-.055em;
+}
+
+
+.services-section .section-statement{
+  max-width:820px;
+
+  margin:24px 0 0;
+
+  color:var(--navy);
+
+  font-size:clamp(1.55rem,2.35vw,2.5rem);
+  line-height:1.12;
+
+  font-weight:700;
+  letter-spacing:-.035em;
+}
+
+
+.services-section .section-description{
+  max-width:720px;
+
+  margin:22px 0 0;
+
+  color:var(--muted);
+
+  font-size:1.08rem;
+  line-height:1.72;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:680px){
+
+  .hero-positioning{
+    font-size:clamp(3rem,13vw,4.4rem);
+  }
+
+
+  .hero-positioning .hero-line{
+    display:block;
+  }
+
+
+  .hero-separator{
+    display:none;
+  }
+
+
+  .hero-brand-statement{
+    font-size:clamp(1.8rem,8.5vw,2.6rem);
+  }
+
+
+  .hero-location{
+    font-size:.88rem;
+  }
+
+
+  .why-heading .why-title,
+  .services-section .section-title{
+    font-size:clamp(3rem,13vw,4.4rem);
+  }
+
+
+  .why-heading .why-statement,
+  .services-section .section-statement{
+    font-size:clamp(1.4rem,6.5vw,2rem);
+  }
+
+}
+/* =========================================================
+   HERO BRAND STATEMENT ANIMATION
+   ========================================================= */
+
+.hero-brand-statement{
+  display:block;
+}
+
+.hero-brand-line{
+  display:block;
+
+  opacity:0;
+  transform:translateY(18px);
+}
+
+
+/* Helping businesses */
+
+body.hero-ready .hero-brand-line-one{
+  animation:
+    rise
+    .72s
+    cubic-bezier(.22,1,.36,1)
+    .35s
+    forwards;
+}
+
+
+/* make sense */
+
+body.hero-ready .hero-brand-line-two{
+  animation:
+    rise
+    .72s
+    cubic-bezier(.22,1,.36,1)
+    .58s
+    forwards;
+}
+
+
+/* of their data */
+
+body.hero-ready .hero-brand-line-three{
+  animation:
+    rise
+    .78s
+    cubic-bezier(.22,1,.36,1)
+    .82s
+    forwards;
+}
+
+
+/* Let the coloured words resolve slightly after their line appears */
+
+body.hero-ready
+.hero-brand-line-two
+.hero-accent-teal{
+
+  animation:
+    heroAccentIn
+    .8s
+    cubic-bezier(.22,1,.36,1)
+    .82s
+    forwards;
+}
+
+
+body.hero-ready
+.hero-brand-line-three
+.hero-accent-coral{
+
+  animation:
+    heroAccentIn
+    .8s
+    cubic-bezier(.22,1,.36,1)
+    1.08s
+    forwards;
+}
+
+
+/* Data underline */
+
+body.hero-ready
+.hero-brand-line-three
+.hero-accent-coral::after{
+
+  animation:
+    underline
+    .7s
+    cubic-bezier(.22,1,.36,1)
+    1.38s
+    forwards;
+}
+/* =========================================================
+   FINAL HERO POSITIONING
+   ========================================================= */
+
+.hero-positioning{
+  max-width:100%;
+  margin:0 0 28px;
+
+  font-size:clamp(2.8rem,3.75vw,4.65rem);
+  line-height:.92;
+  font-weight:850;
+  letter-spacing:-.06em;
+}
+
+.hero-positioning-line{
+  display:block;
+  white-space:nowrap;
+}
+
+.hero-separator{
+  display:inline-block;
+  margin:0 .08em;
+
+  color:var(--teal);
+
+  font-size:.65em;
+  vertical-align:.12em;
+}
+
+
+@media(max-width:680px){
+
+  .hero-positioning{
+    font-size:clamp(2.8rem,12vw,4rem);
+  }
+
+  .hero-positioning-line{
+    white-space:normal;
+  }
+
+  .hero-positioning-line:first-child{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:baseline;
+    gap:0 .12em;
+  }
+
+}
+/* =========================================================
+   CASE STUDIES — COMPACT THUMBNAIL GALLERY
+   ========================================================= */
+
+
+/* Tighten the overall section */
+
+#work.case-browser-section{
+  padding:72px 0;
+}
+
+
+/* Slightly reduce the introductory/menu area */
+
+#work .case-browser-feature{
+  padding:42px 46px;
+  gap:48px;
+}
+
+
+/* Make the menu itself more compact */
+
+#work .case-browser-menu{
+  gap:7px;
+}
+
+#work .case-browser-menu button{
+  padding:12px 14px 12px 48px;
+  border-radius:11px;
+}
+
+#work .case-browser-menu button > span,
+#work .case-browser-menu button.is-active > span{
+  top:14px;
+  left:14px;
+  font-size:.62rem;
+}
+
+#work .case-browser-menu strong{
+  font-size:.82rem;
+}
+
+#work .case-browser-menu small{
+  font-size:.64rem;
+}
+
+
+/* Slightly reduce the active case-study copy */
+
+#work .case-browser-copy h2{
+  max-width:850px;
+
+  font-size:clamp(2.25rem,3.8vw,4rem);
+}
+
+#work .case-browser-intro{
+  margin-top:18px;
+
+  max-width:760px;
+
+  font-size:.98rem;
+  line-height:1.62;
+}
+
+#work .case-browser-tags{
+  margin-top:18px;
+}
+
+#work .case-browser-main-link{
+  margin-top:22px;
+}
+
+
+/* =========================================================
+   THUMBNAIL GRID
+   ========================================================= */
+
+#work .case-browser-panel{
+  padding:
+    0
+    46px
+    46px;
+}
+
+
+/* Six case studies = clean 3 x 2 layout */
+
+#work .case-browser-cards{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:15px;
+}
+
+
+/* Compact cards */
+
+#work .case-browser-card,
+#work .case-browser-card.is-active{
+  min-height:0;
+
+  padding:14px;
+
+  border-radius:15px;
+
+  opacity:.88;
+
+  transform:none;
+}
+
+
+/* Active card still gets emphasis */
+
+#work .case-browser-card.is-active{
+  opacity:1;
+
+  border-color:var(--teal);
+
+  box-shadow:
+    0 12px 30px
+    rgba(12,38,56,.10);
+}
+
+
+/* =========================================================
+   DASHBOARD THUMBNAILS
+   ========================================================= */
+
+#work .case-browser-card .case-card-image,
+#work .case-browser-card.is-active .case-card-image{
+  width:100%;
+
+  height:145px;
+  min-height:0;
+
+  aspect-ratio:auto;
+
+  border-radius:9px;
+
+  background:#fff;
+}
+
+
+/*
+  Show the COMPLETE dashboard rather than cropping it.
+*/
+
+#work .case-card-image-live img{
+  width:100%;
+  height:100%;
+
+  object-fit:contain;
+  object-position:center;
+
+  transform:none;
+
+  background:#fff;
+}
+
+
+/* =========================================================
+   COMPACT CARD TEXT
+   ========================================================= */
+
+#work .case-browser-card .case-card-status,
+#work .case-browser-card.is-active .case-card-status{
+  margin-bottom:10px;
+
+  padding:4px 8px;
+
+  font-size:.56rem;
+}
+
+
+#work .case-browser-card .case-card-type,
+#work .case-browser-card.is-active .case-card-type{
+  margin-top:13px;
+
+  font-size:.57rem;
+}
+
+
+#work .case-browser-card h3,
+#work .case-browser-card.is-active h3{
+  margin:7px 0 7px;
+
+  font-size:1.08rem;
+  line-height:1.12;
+}
+
+
+#work .case-browser-card > p:not(.case-card-type),
+#work .case-browser-card.is-active > p:not(.case-card-type){
+  font-size:.76rem;
+  line-height:1.48;
+}
+
+
+#work .case-browser-card .case-card-link,
+#work .case-browser-card.is-active .case-card-link{
+  padding-top:12px;
+
+  font-size:.76rem;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media(max-width:1050px){
+
+  #work .case-browser-cards{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
+
+  #work .case-browser-card .case-card-image,
+  #work .case-browser-card.is-active .case-card-image{
+    height:165px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:700px){
+
+  #work .case-browser-feature{
+    padding:28px 22px 30px;
+  }
+
+  #work .case-browser-panel{
+    padding:
+      0
+      22px
+      30px;
+  }
+
+
+  /*
+    On mobile turn the thumbnails into a horizontal gallery
+    rather than stacking six large cards vertically.
+  */
+
+  #work .case-browser-cards{
+    display:flex;
+
+    gap:12px;
+
+    overflow-x:auto;
+
+    scroll-snap-type:x mandatory;
+
+    scrollbar-width:none;
+  }
+
+  #work .case-browser-cards::-webkit-scrollbar{
+    display:none;
+  }
+
+
+  #work .case-browser-card,
+  #work .case-browser-card.is-active{
+    display:flex;
+
+    flex:
+      0
+      0
+      78%;
+
+    scroll-snap-align:start;
+  }
+
+
+  #work .case-browser-card .case-card-image,
+  #work .case-browser-card.is-active .case-card-image{
+    height:145px;
+  }
+
 }
