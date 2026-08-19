@@ -943,3 +943,96 @@ console.log(
     });
 
 });
+/* =========================================================
+   CASE STUDY SHOWCASE
+   ========================================================= */
+
+const caseOptions =
+  document.querySelectorAll(".case-showcase-option");
+
+const caseImage =
+  document.getElementById("caseShowcaseImage");
+
+const caseType =
+  document.getElementById("caseShowcaseType");
+
+const caseTitle =
+  document.getElementById("caseShowcaseTitle");
+
+const caseDescription =
+  document.getElementById("caseShowcaseDescription");
+
+const caseTags =
+  document.getElementById("caseShowcaseTags");
+
+const caseLink =
+  document.getElementById("caseShowcaseLink");
+
+
+if (
+  caseOptions.length &&
+  caseImage &&
+  caseTitle
+){
+
+  caseOptions.forEach(option => {
+
+    option.addEventListener("click", () => {
+
+      caseOptions.forEach(item => {
+        item.classList.remove("is-active");
+      });
+
+
+      option.classList.add("is-active");
+
+
+      caseImage.classList.add("is-changing");
+
+
+      window.setTimeout(() => {
+
+        caseImage.src =
+          option.dataset.image;
+
+        caseImage.alt =
+          option.dataset.alt || "";
+
+
+        caseType.innerHTML =
+          option.dataset.type || "";
+
+
+        caseTitle.innerHTML =
+          option.dataset.title || "";
+
+
+        caseDescription.innerHTML =
+          option.dataset.description || "";
+
+
+        caseLink.href =
+          option.dataset.link || "#";
+
+
+        const tags =
+          (option.dataset.tags || "")
+            .split("|")
+            .filter(Boolean);
+
+
+        caseTags.innerHTML =
+          tags
+            .map(tag => `<span>${tag}</span>`)
+            .join("");
+
+
+        caseImage.classList.remove("is-changing");
+
+      },180);
+
+    });
+
+  });
+
+}
