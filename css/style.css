@@ -6532,45 +6532,299 @@ body.dashboard-active .source-cloud span:nth-child(5){
 
 
 /* =========================================================
-   MOBILE
+   MOBILE CASE STUDY SELECTOR
    ========================================================= */
 
 @media(max-width:680px){
 
-  .hero-positioning{
-    font-size:clamp(3rem,13vw,4.4rem);
+  .case-showcase-section{
+    padding:72px 0;
   }
 
 
-  .hero-positioning .hero-line{
+  /* Main selected case */
+
+  .case-showcase{
+    display:flex;
+    flex-direction:column;
+
+    border-radius:22px;
+  }
+
+
+  .case-showcase-main{
+    order:1;
+
+    padding:16px;
+  }
+
+
+  .case-showcase-image{
+    width:100%;
+    min-height:0;
+
+    aspect-ratio:16 / 9;
+
+    border-radius:12px;
+  }
+
+
+  .case-showcase-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+    object-position:center;
+  }
+
+
+  .case-showcase-content{
+    padding:20px 4px 10px;
+  }
+
+
+  .case-showcase-content h3{
+    font-size:clamp(1.65rem,8vw,2.2rem);
+  }
+
+
+  .case-showcase-description{
+    margin-top:10px;
+
+    font-size:.9rem;
+    line-height:1.58;
+  }
+
+
+  .case-showcase-tags{
+    margin-top:14px;
+    gap:5px;
+  }
+
+
+  .case-showcase-tags span{
+    padding:5px 8px;
+
+    font-size:.6rem;
+  }
+
+
+  .case-showcase-link{
+    margin-top:16px;
+  }
+
+
+
+  /* =====================================================
+     ALL SIX CASES VISIBLE
+     ===================================================== */
+
+  .case-showcase-list{
+    order:2;
+
+    display:grid;
+
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+
+    grid-template-rows:auto;
+
+    gap:8px;
+
+    padding:14px;
+
+    overflow:visible;
+
+    background:var(--navy);
+  }
+
+
+  /* Helpful instruction */
+
+  .case-showcase-list::before{
+    content:"Choose another case study";
+
+    grid-column:1 / -1;
+
+    padding:2px 2px 7px;
+
+    color:rgba(255,255,255,.55);
+
+    font-size:.65rem;
+    font-weight:900;
+
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+
+
+
+  /* Individual selector card */
+
+  .case-showcase-option,
+  .case-showcase-option.is-active{
+
+    position:relative;
+
+    width:100%;
+    min-width:0;
+    min-height:0;
+
+    padding:8px;
+
     display:block;
+
+    border:
+      1px
+      solid
+      rgba(255,255,255,.10);
+
+    border-radius:10px;
+
+    background:
+      rgba(255,255,255,.045);
+
+    text-align:left;
+
+    transition:
+      border-color .2s ease,
+      background .2s ease,
+      transform .2s ease;
   }
 
 
-  .hero-separator{
+  .case-showcase-option:hover{
+    transform:none;
+
+    background:
+      rgba(255,255,255,.07);
+  }
+
+
+  /* Selected case */
+
+  .case-showcase-option.is-active{
+
+    padding:8px;
+
+    border-color:var(--teal);
+
+    background:
+      rgba(33,184,158,.16);
+  }
+
+
+  .case-showcase-option.is-active::before{
     display:none;
   }
 
 
-  .hero-brand-statement{
-    font-size:clamp(1.8rem,8.5vw,2.6rem);
+
+  /* Dashboard thumbnail */
+
+  .case-showcase-option img{
+
+    width:100%;
+    height:auto;
+
+    aspect-ratio:16 / 9;
+
+    object-fit:contain;
+    object-position:center;
+
+    border-radius:6px;
+
+    background:#fff;
   }
 
 
-  .hero-location{
-    font-size:.88rem;
+
+  /* Text below image */
+
+  .case-option-copy{
+
+    display:block;
+
+    min-width:0;
+
+    margin-top:7px;
   }
 
 
-  .why-heading .why-title,
-  .services-section .section-title{
-    font-size:clamp(3rem,13vw,4.4rem);
+  .case-option-copy strong{
+
+    display:block;
+
+    overflow:visible;
+
+    color:#fff;
+
+    font-size:.69rem;
+    line-height:1.2;
+
+    white-space:normal;
+    text-overflow:clip;
   }
 
 
-  .why-heading .why-statement,
-  .services-section .section-statement{
-    font-size:clamp(1.4rem,6.5vw,2rem);
+  .case-option-copy small{
+
+    display:block;
+
+    margin-top:2px;
+
+    overflow:visible;
+
+    color:
+      rgba(255,255,255,.48);
+
+    font-size:.55rem;
+    line-height:1.25;
+
+    white-space:normal;
+    text-overflow:clip;
+  }
+
+
+  .case-showcase-option.is-active
+  .case-option-copy strong{
+    color:#83e6d4;
+  }
+
+
+  .case-showcase-option.is-active
+  .case-option-copy small{
+    color:
+      rgba(131,230,212,.72);
+  }
+
+
+
+  /* Case number */
+
+  .case-option-number{
+
+    top:5px;
+    right:5px;
+
+    padding:2px 5px;
+
+    border-radius:999px;
+
+    color:#fff;
+
+    background:
+      rgba(12,38,56,.78);
+
+    font-size:.48rem;
+  }
+
+
+  .case-showcase-option.is-active
+  .case-option-number{
+
+    color:var(--navy);
+    background:var(--teal);
   }
 
 }
