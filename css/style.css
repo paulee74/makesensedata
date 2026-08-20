@@ -7748,3 +7748,56 @@ body.hero-ready
   }
 
 }
+/* ==================================================
+   Case study "The question" sections
+   Reduce oversized headings and restore two-column rhythm
+   ================================================== */
+
+.case-study-build .eyebrow + h2 {
+    max-width: 900px;
+}
+
+.case-study-build h2 {
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    line-height: 1.05;
+}
+
+
+/* Keep question sections closer to normal case study spacing */
+
+.case-study-build .case-study-grid {
+    margin-top: 2rem;
+}
+
+
+/* Improve paragraph balance in question sections */
+
+.case-study-build .case-study-grid p {
+    max-width: 600px;
+}
+
+
+/* On larger screens stop the heading dominating */
+
+@media (min-width: 900px){
+
+    .case-study-build .case-study-grid > div:first-child h2 {
+        font-size: clamp(2rem, 3vw, 3.2rem);
+    }
+
+}
+.case-study-build:has(.case-study-grid) .case-study-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 60px;
+}
+
+.case-study-build:has(.case-study-grid) > .case-study-inner > h2 {
+    grid-column: 1;
+}
+
+@media(max-width:900px){
+    .case-study-build:has(.case-study-grid) .case-study-inner {
+        display:block;
+    }
+}
